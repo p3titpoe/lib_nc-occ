@@ -1,12 +1,11 @@
 from pprint import pp
 from dataclasses import dataclass,field
 from pathlib import  Path
+from lib_occ.logic import base,root
 
-base = Path(__file__).parent
-root = base.parent
 
-occ_file = f"{base}/occ_list.txt"
-occ_lib = f"{base}/occ_command_lib.py"
+occ_file = f"{base}/creation/occ_list.txt"
+occ_lib = f"{base}/creation/occ_command_lib.py"
 occ_classes = f"{base}/occ_classes.py"
 
 def get_file_content(file:str):

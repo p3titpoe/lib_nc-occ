@@ -1,6 +1,12 @@
 import subprocess
 from pprint import pp
+from pathlib import Path
 from dataclasses import dataclass,field
+
+base = Path(__file__).parent
+root = base.parent
+
+
 
 @dataclass
 class NCOcc:

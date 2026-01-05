@@ -37,7 +37,7 @@ func_ref_objs ="""
         return self._lib['{libname}']
 """
 
-py_imports = """from lib_occ import occ_command_lib as cmdlib
+py_imports = """from lib_occ.creation import occ_command_lib as cmdlib
 from lib_occ.logic import NCOcc
 from dataclasses import dataclass
 """
@@ -55,20 +55,21 @@ def generate_classes(skel:dict,classname:str,libname:str,path_to:str=None):
     else:
         path_to=libname
     # print(skel)
-    cl = header.format('{}',clname = classname,libname = libname,path_to=path_to)
-    out += cl
+    head = header[:]
+    head = head.format('{}',clname = classname,libname = libname,path_to=path_to)
+    out += head
     cls_names.add(classname)
     for k,v in skel.items():
         # print(k,v)
-        ref = func_ref_normal
+        ref = func_ref_normal[:]
         if k == 'occ_lib_name':
             break
         if len(v) > 3 or 'command' not in v.keys():
             ss = str(k).capitalize()
             subclasses.append(generate_classes(skel=v,classname=f"{classname}{ss}",libname=ss.lower(),path_to=path_to))
-            ref = func_ref_objs
+            ref = func_ref_objs[:]
         if k in two_param:
-            ref = func_ref_param
+            ref = func_ref_param[:]
         funcname = k
         if "-" in k:
             funcname = k.replace("-","_")
@@ -88,23 +89,38 @@ def update_init(classnames:str):
 
 def compose_classes() :
     suffix='_occ'
-    members = ['files']
+    # members = cmdlib.members_occ_lib
+    members =['appapi']
     import_base = ""
 
     for section in members:
+        print(section)
         filetxt = ""
         cls_names.rm()
         fname = f"{section}{suffix}"
         filename = f"{base}/lib/{fname}.py"
         import_base = f"from .{fname} import "
         filetxt += py_imports
-        filetxt += generate_classes(cmdlib.files,section.capitalize(),section)
+        skel = getattr(cmdlib,section)
+        filetxt += generate_classes(skel,section.capitalize(),section)
         with open(filename,"w") as fn:
             fn.write(filetxt)
         gen_classnames = reversed([f"NcOcc{x}" for x in cls_names.names])
         import_base = import_base+" "+",".join(gen_classnames)
+        print("CLANAM",cls_names.names)
+
         print(import_base)
-        update_init(import_base)
+        update_init(f"{import_base}\n")
+        cls_names.rm()
+
+
+# def function_tests(classnames:list[str],modulename:str):
+#
+#     for c in classnames:
+#         lbname = f"lib_occ.lib.{modulename}"
+#         cls = ","
+#         try:
+#             from lib_occ.lib import
 
 
 compose_classes()
