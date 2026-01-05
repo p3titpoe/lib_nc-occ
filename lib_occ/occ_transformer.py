@@ -93,7 +93,7 @@ def create_occ_def(tree:dict,name:str)->str:
             bl = f"{'':>{get_ind()}}"+"{},"
         out += bl
     # out += f"{'':>5}'submodules':{[x for x in tree if x !="__single__"]},\n"
-    out += f"{'':>5}'name':'{name}'\n"
+    out += f"{'':>5}'occ_lib_name':'{name}'\n"
     out += "}\n"
     return out
 
@@ -106,11 +106,12 @@ def compose():
     t = transform_to_dict()
     txt = "### Definition Library\n"
 
-    defs = ""
+    defs = []
     for k,v in t.items():
+        defs.append(k)
         org_t = organize_tree(v)
-        defs += create_occ_def(org_t, k)
-
+        txt += create_occ_def(org_t, k)
+    txt += f"members_occ_lib = {defs}"
     with open(occ_lib, "w") as ofile:
         ofile.write(txt)
-
+compose()

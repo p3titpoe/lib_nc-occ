@@ -1,11 +1,12 @@
 import subprocess
+from pprint import pp
 from dataclasses import dataclass,field
-
 
 @dataclass
 class NCOcc:
+    name:str = None
     _lib:dict[str:str] =field(default_factory=dict)
-
+    _output = "--output=json"
     def _set_lib(self,name:str,value:str):
         if name not in self._lib and isinstance(value,str):
             self._lib[name] = value
@@ -22,17 +23,15 @@ class NCOcc:
             out = True
         return out
 
-    def process(self,args:str|list,capture_output:bool=True,txt:bool=True):
-        result = subprocess.run(args=args, capture_output=capture_output,text=txt)
-        return (result.stdout)
-        pass
+    def _process(self,args:str|list,capture_output:bool=True,txt:bool=True):
+        args.append(self._output)
+        ff = f"args={args}, capture_output={capture_output},text={txt}"
+        # result = subprocess.run(args=args, capture_output=capture_output,text=txt)
+        # return (result.stdout)
+        return ff
 
-@dataclass(init=False)
-class NcOccTags(NCOcc):
-    def __init__(self,libs:dict = None):
-        if libs is None:
-            libs = {}
-        super().__init__(libs)
+
+
 
 
 

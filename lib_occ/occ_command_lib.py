@@ -1,4 +1,4 @@
-### Definitions Library
+### Definition Library
 common = {
      'check': {'command': 'check', 'desc': 'check dependencies of the server environment', 'path': ['check']},
      'completion': {'command': 'completion', 'desc': ' Dump the shell completion script', 'path': ['completion']},
@@ -7,17 +7,17 @@ common = {
      'setupchecks': {'command': 'setupchecks', 'desc': 'Run setup checks and output the results', 'path': ['setupchecks']},
      'status': {'command': 'status', 'desc': ' show some status information', 'path': ['status']},
      'upgrade': {'command': 'upgrade', 'desc': 'run upgrade routines after installation of a new release The release has to be installed before', 'path': ['upgrade']},
-     'name':'common'
+     'occ_lib_name':'common'
 }
 activity = {
          'send-mails': {'command': 'activity:send-mails', 'desc': 'Sends the activity notification mails', 'path': ['activity', 'send-mails']},
-     'name':'activity'
+     'occ_lib_name':'activity'
 }
 admindelegation = {
      'add': {'command': 'admin-delegation:add', 'desc': ' add setting delegation to a group', 'path': ['admin-delegation', 'add']},
      'remove': {'command': 'admin-delegation:remove', 'desc': 'remove settings delegation from a group', 'path': ['admin-delegation', 'remove']},
      'show': {'command': 'admin-delegation:show', 'desc': 'show delegated settings', 'path': ['admin-delegation', 'show']},
-     'name':'admindelegation'
+     'occ_lib_name':'admindelegation'
 }
 app = {
          'disable': {'command': 'app:disable', 'desc': 'disable an app', 'path': ['app', 'disable']},
@@ -27,7 +27,7 @@ app = {
          'list': {'command': 'app:list', 'desc': ' List all available apps', 'path': ['app', 'list']},
          'remove': {'command': 'app:remove', 'desc': ' remove an app', 'path': ['app', 'remove']},
          'update': {'command': 'app:update', 'desc': ' update an app or all apps', 'path': ['app', 'update']},
-     'name':'app'
+     'occ_lib_name':'app'
 }
 appapi = {
          'app':{
@@ -54,31 +54,31 @@ appapi = {
                 },
                  'unregister': {'command': 'app_api:daemon:unregister', 'desc': 'Unregister daemon', 'path': ['app_api', 'daemon', 'unregister']},
         },
-     'name':'appapi'
+     'occ_lib_name':'appapi'
 }
 background = {
          'cron': {'command': 'background:cron', 'desc': 'backgroundajaxbackgroundwebcron Use cron ajax or webcron to run background jobs', 'path': ['background', 'cron']},
-     'name':'background'
+     'occ_lib_name':'background'
 }
 backgroundjob = {
          'delete': {'command': 'background-job:delete', 'desc': 'Remove a background job from database', 'path': ['background-job', 'delete']},
          'execute': {'command': 'background-job:execute', 'desc': ' Execute a single background job manually', 'path': ['background-job', 'execute']},
          'list': {'command': 'background-job:list', 'desc': 'List background jobs', 'path': ['background-job', 'list']},
          'worker': {'command': 'background-job:worker', 'desc': 'Run a background job worker', 'path': ['background-job', 'worker']},
-     'name':'backgroundjob'
+     'occ_lib_name':'backgroundjob'
 }
 bookmarks = {
          'clear-previews': {'command': 'bookmarks:clear-previews', 'desc': ' Clear all cached bookmarks previews so that they have to be regenerated', 'path': ['bookmarks', 'clear-previews']},
-     'name':'bookmarks'
+     'occ_lib_name':'bookmarks'
 }
 broadcast = {
          'test': {'command': 'broadcast:test', 'desc': ' test the SSE broadcaster', 'path': ['broadcast', 'test']},
-     'name':'broadcast'
+     'occ_lib_name':'broadcast'
 }
 calendar = {
          'export': {'command': 'calendar:export', 'desc': 'Export calendar data from supported calendars to disk or stdout', 'path': ['calendar', 'export']},
          'import': {'command': 'calendar:import', 'desc': 'Import calendar data to supported calendars from disk or stdin', 'path': ['calendar', 'import']},
-     'name':'calendar'
+     'occ_lib_name':'calendar'
 }
 circles = {
          'check': {'command': 'circles:check', 'desc': 'Checking your configuration', 'path': ['circles', 'check']},
@@ -112,7 +112,7 @@ circles = {
         },
          'sync': {'command': 'circles:sync', 'desc': ' Sync Circles and Members', 'path': ['circles', 'sync']},
          'test': {'command': 'circles:test', 'desc': ' testing some features', 'path': ['circles', 'test']},
-     'name':'circles'
+     'occ_lib_name':'circles'
 }
 config = {
          'app':{
@@ -128,7 +128,7 @@ config = {
                  'get': {'command': 'config:system:get', 'desc': 'Get a system config value', 'path': ['config', 'system', 'get']},
                  'set': {'command': 'config:system:set', 'desc': 'Set a system config value', 'path': ['config', 'system', 'set']},
         },
-     'name':'config'
+     'occ_lib_name':'config'
 }
 dav = {
          'absence':{
@@ -155,7 +155,7 @@ dav = {
          'send-event-reminders': {'command': 'dav:send-event-reminders', 'desc': ' Sends event reminders', 'path': ['dav', 'send-event-reminders']},
          'sync-birthday-calendar': {'command': 'dav:sync-birthday-calendar', 'desc': ' Synchronizes the birthday calendar', 'path': ['dav', 'sync-birthday-calendar']},
          'sync-system-addressbook': {'command': 'dav:sync-system-addressbook', 'desc': 'Synchronizes users to the system addressbook', 'path': ['dav', 'sync-system-addressbook']},
-     'name':'dav'
+     'occ_lib_name':'dav'
 }
 db = {
          'add-missing-columns': {'command': 'db:add-missing-columns', 'desc': ' Add missing optional columns to the database tables', 'path': ['db', 'add-missing-columns']},
@@ -168,7 +168,7 @@ db = {
                  'expected': {'command': 'db:schema:expected', 'desc': ' Export the expected database schema for a fresh installation', 'path': ['db', 'schema', 'expected']},
                  'export': {'command': 'db:schema:export', 'desc': ' Export the current database schema', 'path': ['db', 'schema', 'export']},
         },
-     'name':'db'
+     'occ_lib_name':'db'
 }
 encryption = {
          'change-key-storage-root': {'command': 'encryption:change-key-storage-root', 'desc': ' Change key storage root', 'path': ['encryption', 'change-key-storage-root']},
@@ -181,12 +181,12 @@ encryption = {
          'set-default-module': {'command': 'encryption:set-default-module', 'desc': 'Set the encryption default module', 'path': ['encryption', 'set-default-module']},
          'show-key-storage-root': {'command': 'encryption:show-key-storage-root', 'desc': ' Show current key storage root', 'path': ['encryption', 'show-key-storage-root']},
          'status': {'command': 'encryption:status', 'desc': 'Lists the current status of encryption', 'path': ['encryption', 'status']},
-     'name':'encryption'
+     'occ_lib_name':'encryption'
 }
 federation = {
          'sync-addressbooks': {'command': 'federation:sync-addressbooks', 'desc': ' Synchronizes addressbooks of all federated clouds', 'path': ['federation', 'sync-addressbooks']},
          'sync-calendars': {'command': 'federation:sync-calendars', 'desc': 'Synchronize all incoming federated calendar shares', 'path': ['federation', 'sync-calendars']},
-     'name':'federation'
+     'occ_lib_name':'federation'
 }
 files = {
          'cleanup': {'command': 'files:cleanup', 'desc': 'Clean up orphaned filecache and mount entries', 'path': ['files', 'cleanup']},
@@ -217,7 +217,7 @@ files = {
          'scan-app-data': {'command': 'files:scan-app-data', 'desc': 'rescan the AppData folder', 'path': ['files', 'scan-app-data']},
          'transfer-ownership': {'command': 'files:transfer-ownership', 'desc': ' All files and folders are moved to another user  outgoing shares and incoming user file shares optionally are moved as well', 'path': ['files', 'transfer-ownership']},
          'windows-compatible-filenames': {'command': 'files:windows-compatible-filenames', 'desc': ' Enforce naming constraints for windows compatible filenames', 'path': ['files', 'windows-compatible-filenames']},
-     'name':'files'
+     'occ_lib_name':'files'
 }
 group = {
          'add': {'command': 'group:add', 'desc': 'Add a group', 'path': ['group', 'add']},
@@ -226,7 +226,7 @@ group = {
          'info': {'command': 'group:info', 'desc': ' Show information about a group', 'path': ['group', 'info']},
          'list': {'command': 'group:list', 'desc': ' list configured groups', 'path': ['group', 'list']},
          'removeuser': {'command': 'group:removeuser', 'desc': ' remove a user from a group', 'path': ['group', 'removeuser']},
-     'name':'group'
+     'occ_lib_name':'group'
 }
 info = {
      'file':{
@@ -234,25 +234,25 @@ info = {
     },
      'storage': {'command': 'info:storage', 'desc': ' Get information a single storage', 'path': ['info', 'storage']},
      'storages': {'command': 'info:storages', 'desc': 'List storages ordered by the number of files', 'path': ['info', 'storages']},
-     'name':'info'
+     'occ_lib_name':'info'
 }
 integrity = {
          'check-app': {'command': 'integrity:check-app', 'desc': 'Check integrity of an app using a signature', 'path': ['integrity', 'check-app']},
          'check-core': {'command': 'integrity:check-core', 'desc': ' Check integrity of core code using a signature', 'path': ['integrity', 'check-core']},
          'sign-app': {'command': 'integrity:sign-app', 'desc': ' Signs an app using a private key', 'path': ['integrity', 'sign-app']},
          'sign-core': {'command': 'integrity:sign-core', 'desc': 'Sign core using a private key', 'path': ['integrity', 'sign-core']},
-     'name':'integrity'
+     'occ_lib_name':'integrity'
 }
 l10n = {
          'createjs': {'command': 'l10n:createjs', 'desc': 'Create javascript translation files for a given app', 'path': ['l10n', 'createjs']},
-     'name':'l10n'
+     'occ_lib_name':'l10n'
 }
 log = {
          'file': {'command': 'log:file', 'desc': ' manipulate logging backend', 'path': ['log', 'file']},
          'manage': {'command': 'log:manage', 'desc': ' manage logging configuration', 'path': ['log', 'manage']},
          'tail': {'command': 'log:tail', 'desc': ' Tail the nextcloud logfile', 'path': ['log', 'tail']},
          'watch': {'command': 'log:watch', 'desc': 'Watch the nextcloud logfile', 'path': ['log', 'watch']},
-     'name':'log'
+     'occ_lib_name':'log'
 }
 maintenance = {
          'data-fingerprint': {'command': 'maintenance:data-fingerprint', 'desc': ' update the systems datafingerprint after a backup is restored', 'path': ['maintenance', 'data-fingerprint']},
@@ -269,7 +269,7 @@ maintenance = {
          'update':{
                  'htaccess': {'command': 'maintenance:update:htaccess', 'desc': 'Updates the htaccess file', 'path': ['maintenance', 'update', 'htaccess']},
         },
-     'name':'maintenance'
+     'occ_lib_name':'maintenance'
 }
 memcache = {
          'distributed':{
@@ -279,21 +279,21 @@ memcache = {
                  'set': {'command': 'memcache:distributed:set', 'desc': ' Set a value in the distributed memcache', 'path': ['memcache', 'distributed', 'set']},
         },
          'redis': {'command': {'command': 'memcache:redis:command', 'desc': ' Send raw redis command to the configured redis server', 'path': ['memcache', 'redis', 'command']}},
-     'name':'memcache'
+     'occ_lib_name':'memcache'
 }
 metadata = {
          'get': {'command': 'metadata:get', 'desc': ' get stored metadata about a file by its id', 'path': ['metadata', 'get']},
-     'name':'metadata'
+     'occ_lib_name':'metadata'
 }
 migrations = {
          'preview': {'command': 'migrations:preview', 'desc': ' Get preview of available DB migrations in case of initiating an upgrade', 'path': ['migrations', 'preview']},
-     'name':'migrations'
+     'occ_lib_name':'migrations'
 }
 notification = {
      'delete': {'command': 'notification:delete', 'desc': 'Delete a generated admin notification for the given user', 'path': ['notification', 'delete']},
      'generate': {'command': 'notification:generate', 'desc': 'Generate a notification for the given user', 'path': ['notification', 'generate']},
      'test-push': {'command': 'notification:test-push', 'desc': ' Generate a notification for the given user', 'path': ['notification', 'test-push']},
-     'name':'notification'
+     'occ_lib_name':'notification'
 }
 photos = {
          'albums':{
@@ -301,19 +301,19 @@ photos = {
                  'create': {'command': 'photos:albums:create', 'desc': ' Create a new album for a user', 'path': ['photos', 'albums', 'create']},
         },
          'update-1000-cities': {'command': 'photos:update-1000-cities', 'desc': 'Update the list of 1000 and more inhabitant cities', 'path': ['photos', 'update-1000-cities']},
-     'name':'photos'
+     'occ_lib_name':'photos'
 }
 preview = {
          'cleanup': {'command': 'preview:cleanup', 'desc': 'Removes existing preview files', 'path': ['preview', 'cleanup']},
          'generate': {'command': 'preview:generate', 'desc': ' generate a preview for a file', 'path': ['preview', 'generate']},
          'repair': {'command': 'preview:repair', 'desc': ' distributes the existing previews into subfolders', 'path': ['preview', 'repair']},
          'reset-rendered-texts': {'command': 'preview:reset-rendered-texts', 'desc': ' Deletes all generated avatars and previews of text and md files', 'path': ['preview', 'reset-rendered-texts']},
-     'name':'preview'
+     'occ_lib_name':'preview'
 }
 router = {
          'list': {'command': 'router:list', 'desc': 'Find the target of a route or all routes of an app', 'path': ['router', 'list']},
          'match': {'command': 'router:match', 'desc': ' Match a URL to the target route', 'path': ['router', 'match']},
-     'name':'router'
+     'occ_lib_name':'router'
 }
 security = {
          'bruteforce':{
@@ -323,26 +323,26 @@ security = {
          'certificates':{
                  'security:certificates': {'command': 'security:certificates', 'desc': 'list trusted certificates', 'path': ['security', 'certificates'], 'export': {'command': 'security:certificates:export', 'desc': ' export the certificate bundle', 'path': ['security', 'certificates', 'export']}, 'import': {'command': 'security:certificates:import', 'desc': ' import trusted certificate in PEM format', 'path': ['security', 'certificates', 'import']}, 'remove': {'command': 'security:certificates:remove', 'desc': ' remove trusted certificate', 'path': ['security', 'certificates', 'remove']}},
         },
-     'name':'security'
+     'occ_lib_name':'security'
 }
 serverinfo = {
          'update-storage-statistics': {'command': 'serverinfo:update-storage-statistics', 'desc': ' Triggers an update of the counts related to storages used in serverinfo', 'path': ['serverinfo', 'update-storage-statistics']},
-     'name':'serverinfo'
+     'occ_lib_name':'serverinfo'
 }
 share = {
          'list': {'command': 'share:list', 'desc': ' List available shares', 'path': ['share', 'list']},
-     'name':'share'
+     'occ_lib_name':'share'
 }
 sharing = {
          'cleanup-remote-storages': {'command': 'sharing:cleanup-remote-storages', 'desc': 'Cleanup shared storage entries that have no matching entry in the sharesexternal table', 'path': ['sharing', 'cleanup-remote-storages']},
          'delete-orphan-shares': {'command': 'sharing:delete-orphan-shares', 'desc': ' Delete shares where the owner no longer has access to the file', 'path': ['sharing', 'delete-orphan-shares']},
          'expiration-notification': {'command': 'sharing:expiration-notification', 'desc': 'Notify share initiators when a share will expire the next day', 'path': ['sharing', 'expiration-notification']},
          'fix-share-owners': {'command': 'sharing:fix-share-owners', 'desc': ' Fix owner of broken shares after transfer ownership on old versions', 'path': ['sharing', 'fix-share-owners']},
-     'name':'sharing'
+     'occ_lib_name':'sharing'
 }
 support = {
          'report': {'command': 'support:report', 'desc': ' Generate a system report', 'path': ['support', 'report']},
-     'name':'support'
+     'occ_lib_name':'support'
 }
 tables = {
          'add': {'command': 'tables:add', 'desc': ' Add a table', 'path': ['tables', 'add']},
@@ -361,7 +361,7 @@ tables = {
          'owner': {'command': 'tables:owner', 'desc': ' Set new owner for a table', 'path': ['tables', 'owner']},
          'remove': {'command': 'tables:remove', 'desc': 'Remove a table', 'path': ['tables', 'remove']},
          'update': {'command': 'tables:update', 'desc': 'tablesrename Rename a table', 'path': ['tables', 'update']},
-     'name':'tables'
+     'occ_lib_name':'tables'
 }
 tag = {
          'add': {'command': 'tag:add', 'desc': 'Add new tag', 'path': ['tag', 'add']},
@@ -373,7 +373,7 @@ tag = {
                  'delete-all': {'command': 'tag:files:delete-all', 'desc': ' Delete all systemtags from a file or folder', 'path': ['tag', 'files', 'delete-all']},
         },
          'list': {'command': 'tag:list', 'desc': ' list tags', 'path': ['tag', 'list']},
-     'name':'tag'
+     'occ_lib_name':'tag'
 }
 talk = {
          'active-calls': {'command': 'talk:active-calls', 'desc': 'Allows you to check if calls are currently in process', 'path': ['talk', 'active-calls']},
@@ -429,7 +429,7 @@ talk = {
                  'remove': {'command': 'talk:user:remove', 'desc': ' Remove a user from all their rooms', 'path': ['talk', 'user', 'remove']},
                  'transfer-ownership': {'command': 'talk:user:transfer-ownership', 'desc': ' Adds the destinationuser with the same participant type to all not onetoone conversations of sourceuser', 'path': ['talk', 'user', 'transfer-ownership']},
         },
-     'name':'talk'
+     'occ_lib_name':'talk'
 }
 taskprocessing = {
          'task-type':{
@@ -441,22 +441,22 @@ taskprocessing = {
                  'list': {'command': 'taskprocessing:task:list', 'desc': ' list tasks', 'path': ['taskprocessing', 'task', 'list']},
                  'stats': {'command': 'taskprocessing:task:stats', 'desc': 'get statistics for tasks', 'path': ['taskprocessing', 'task', 'stats']},
         },
-     'name':'taskprocessing'
+     'occ_lib_name':'taskprocessing'
 }
 text = {
          'reset': {'command': 'text:reset', 'desc': ' Reset a text document session to the current file content', 'path': ['text', 'reset']},
-     'name':'text'
+     'occ_lib_name':'text'
 }
 theming = {
          'config': {'command': 'theming:config', 'desc': ' Set theming app config values', 'path': ['theming', 'config']},
-     'name':'theming'
+     'occ_lib_name':'theming'
 }
 trashbin = {
          'cleanup': {'command': 'trashbin:cleanup', 'desc': ' Remove deleted files', 'path': ['trashbin', 'cleanup']},
          'expire': {'command': 'trashbin:expire', 'desc': 'Expires the users trashbin', 'path': ['trashbin', 'expire']},
          'restore': {'command': 'trashbin:restore', 'desc': ' Restore all deleted files according to the given filters', 'path': ['trashbin', 'restore']},
          'size': {'command': 'trashbin:size', 'desc': 'Configure the target trashbin size', 'path': ['trashbin', 'size']},
-     'name':'trashbin'
+     'occ_lib_name':'trashbin'
 }
 twofactorauth = {
          'cleanup': {'command': 'twofactorauth:cleanup', 'desc': 'Clean up the twofactor userprovider association of an uninstalledremoved provider', 'path': ['twofactorauth', 'cleanup']},
@@ -464,11 +464,11 @@ twofactorauth = {
          'enable': {'command': 'twofactorauth:enable', 'desc': ' Enable twofactor authentication for a user', 'path': ['twofactorauth', 'enable']},
          'enforce': {'command': 'twofactorauth:enforce', 'desc': 'Enableddisable enforced twofactor authentication', 'path': ['twofactorauth', 'enforce']},
          'state': {'command': 'twofactorauth:state', 'desc': 'Get the twofactor authentication 2FA state of a user', 'path': ['twofactorauth', 'state']},
-     'name':'twofactorauth'
+     'occ_lib_name':'twofactorauth'
 }
 update = {
          'check': {'command': 'update:check', 'desc': ' Check for server and app updates', 'path': ['update', 'check']},
-     'name':'update'
+     'occ_lib_name':'update'
 }
 user = {
          'add': {'command': 'user:add', 'desc': ' adds an account', 'path': ['user', 'add']},
@@ -493,18 +493,19 @@ user = {
          'setting': {'command': 'user:setting', 'desc': ' Read and modify user settings', 'path': ['user', 'setting']},
          'sync-account-data': {'command': 'user:sync-account-data', 'desc': ' sync user backend data to accounts table for configured users', 'path': ['user', 'sync-account-data']},
          'welcome': {'command': 'user:welcome', 'desc': ' Sends the welcome email', 'path': ['user', 'welcome']},
-     'name':'user'
+     'occ_lib_name':'user'
 }
 versions = {
          'cleanup': {'command': 'versions:cleanup', 'desc': ' Delete versions', 'path': ['versions', 'cleanup']},
          'expire': {'command': 'versions:expire', 'desc': 'Expires the users file versions', 'path': ['versions', 'expire']},
-     'name':'versions'
+     'occ_lib_name':'versions'
 }
 webhooklisteners = {
          'list': {'command': 'webhook_listeners:list', 'desc': ' Lists configured webhook listeners', 'path': ['webhook_listeners', 'list']},
-     'name':'webhooklisteners'
+     'occ_lib_name':'webhooklisteners'
 }
 workflows = {
          'list': {'command': 'workflows:list', 'desc': ' Lists configured workflows', 'path': ['workflows', 'list']},
-     'name':'workflows'
+     'occ_lib_name':'workflows'
 }
+members_occ_lib = ['common', 'activity', 'admindelegation', 'app', 'appapi', 'background', 'backgroundjob', 'bookmarks', 'broadcast', 'calendar', 'circles', 'config', 'dav', 'db', 'encryption', 'federation', 'files', 'group', 'info', 'integrity', 'l10n', 'log', 'maintenance', 'memcache', 'metadata', 'migrations', 'notification', 'photos', 'preview', 'router', 'security', 'serverinfo', 'share', 'sharing', 'support', 'tables', 'tag', 'talk', 'taskprocessing', 'text', 'theming', 'trashbin', 'twofactorauth', 'update', 'user', 'versions', 'webhooklisteners', 'workflows']
