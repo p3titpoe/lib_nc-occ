@@ -60,7 +60,6 @@ def generate_classes(skel:dict,classname:str,libname:str,path_to:str=None):
     out += head
     cls_names.add(classname)
     for k,v in skel.items():
-        # print(k,v)
         ref = func_ref_normal[:]
         if k == 'occ_lib_name':
             break
@@ -89,27 +88,28 @@ def update_init(classnames:str):
 
 def compose_classes() :
     suffix='_occ'
-    # members = cmdlib.members_occ_lib
-    members =['appapi']
+    members = cmdlib.members_occ_lib
+    # members =['appapi']
     import_base = ""
 
     for section in members:
-        print(section)
         filetxt = ""
         cls_names.rm()
         fname = f"{section}{suffix}"
         filename = f"{base}/lib/{fname}.py"
-        import_base = f"from .{fname} import "
+        import_base = f"from lib_occ.lib.{fname} import "
         filetxt += py_imports
         skel = getattr(cmdlib,section)
         filetxt += generate_classes(skel,section.capitalize(),section)
-        with open(filename,"w") as fn:
-            fn.write(filetxt)
+        # with open(filename,"w") as fn:
+        #     fn.write(filetxt)
         gen_classnames = reversed([f"NcOcc{x}" for x in cls_names.names])
-        import_base = import_base+" "+",".join(gen_classnames)
-        print("CLANAM",cls_names.names)
+        nn = ",".join(gen_classnames)
+        # import_base = import_base+" "+",".join(gen_classnames)
+        import_base = import_base+" "+nn
+        print("Created classes",nn)
+        # print(import_base)
 
-        print(import_base)
         update_init(f"{import_base}\n")
         cls_names.rm()
 

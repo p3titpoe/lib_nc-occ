@@ -230,7 +230,8 @@ group = {
 }
 info = {
      'file':{
-             'info:file': {'command': 'info:file', 'desc': 'get information for a file', 'path': ['info', 'file'], 'space': {'command': 'info:file:space', 'desc': 'Summarize space usage of specified folder', 'path': ['info', 'file', 'space']}},
+             'file': {'command': 'info:file', 'desc': 'get information for a file', 'path': ['info', 'file']},
+             'space': {'command': 'info:file:space', 'desc': 'Summarize space usage of specified folder', 'path': ['info', 'file', 'space']},
     },
      'storage': {'command': 'info:storage', 'desc': ' Get information a single storage', 'path': ['info', 'storage']},
      'storages': {'command': 'info:storages', 'desc': 'List storages ordered by the number of files', 'path': ['info', 'storages']},
@@ -321,7 +322,10 @@ security = {
                  'reset': {'command': 'security:bruteforce:reset', 'desc': 'resets bruteforce attempts for given IP address', 'path': ['security', 'bruteforce', 'reset']},
         },
          'certificates':{
-                 'security:certificates': {'command': 'security:certificates', 'desc': 'list trusted certificates', 'path': ['security', 'certificates'], 'export': {'command': 'security:certificates:export', 'desc': ' export the certificate bundle', 'path': ['security', 'certificates', 'export']}, 'import': {'command': 'security:certificates:import', 'desc': ' import trusted certificate in PEM format', 'path': ['security', 'certificates', 'import']}, 'remove': {'command': 'security:certificates:remove', 'desc': ' remove trusted certificate', 'path': ['security', 'certificates', 'remove']}},
+                 'certificates': {'command': 'security:certificates', 'desc': 'list trusted certificates', 'path': ['security', 'certificates']},
+                 'export': {'command': 'security:certificates:export', 'desc': ' export the certificate bundle', 'path': ['security', 'certificates', 'export']},
+                 'import': {'command': 'security:certificates:import', 'desc': ' import trusted certificate in PEM format', 'path': ['security', 'certificates', 'import']},
+                 'remove': {'command': 'security:certificates:remove', 'desc': ' remove trusted certificate', 'path': ['security', 'certificates', 'remove']},
         },
      'occ_lib_name':'security'
 }

@@ -102,6 +102,10 @@ def compose():
         That files is the skeleton upon which the classes files
         will be created on
      """
+    if Path(occ_lib).exists():
+        consent = input("occ_command_lib.py already exists!\n Are you sure want to overwite it? [y/N]")
+        if consent.lower() != 'y':
+            exit("Exited")
     t = transform_to_dict()
     txt = "### Definition Library\n"
 
@@ -113,4 +117,4 @@ def compose():
     txt += f"members_occ_lib = {defs}"
     with open(occ_lib, "w") as ofile:
         ofile.write(txt)
-compose()
+# compose()
