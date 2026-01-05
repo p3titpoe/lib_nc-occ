@@ -8,6 +8,7 @@ class NcOccNotification(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
+    
 
     def delete(self,value):
         cmd = self._lib['delete']['command']

@@ -8,6 +8,7 @@ class NcOccPhotosAlbums(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
+    
 
     def add(self,value):
         cmd = self._lib['add']['command']
@@ -23,7 +24,9 @@ class NcOccPhotos(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
+    
 
+    @property
     def albums(self)->NCOcc:
         return self._lib['albums']
 

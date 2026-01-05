@@ -18,6 +18,11 @@ class NCOcc:
         if name not in self._lib and isinstance(value,str):
             self._lib[name] = value
 
+    def _generate_subobjs(self, kyval: dict[str, str]):
+        for k, v in kyval.items():
+            obj = v()
+            self._lib[k] = obj
+
     def update_lib(self,what:str|dict,value:str=None)->bool:
         out = False
         if isinstance(what,dict):

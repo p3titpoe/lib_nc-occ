@@ -8,6 +8,7 @@ class NcOccSecurityCertificates(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
+    
 
     def certificates(self)-> str:
         cmd = self._lib['certificates']['command']
@@ -17,7 +18,7 @@ class NcOccSecurityCertificates(NCOcc):
         cmd = self._lib['export']['command']
         return self._process([cmd])            
 
-    def import_sec(self)-> str:
+    def imports(self)-> str:
         cmd = self._lib['import']['command']
         return self._process([cmd])            
 
@@ -31,6 +32,7 @@ class NcOccSecurityBruteforce(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
+    
 
     def attempts(self)-> str:
         cmd = self._lib['attempts']['command']
@@ -46,9 +48,12 @@ class NcOccSecurity(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
+    
 
+    @property
     def bruteforce(self)->NCOcc:
         return self._lib['bruteforce']
 
+    @property
     def certificates(self)->NCOcc:
         return self._lib['certificates']

@@ -8,6 +8,7 @@ class NcOccCommon(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
+    
 
     def check(self)-> str:
         cmd = self._lib['check']['command']
