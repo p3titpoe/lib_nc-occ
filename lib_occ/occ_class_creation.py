@@ -4,14 +4,14 @@ from occ_transformer import base
 header = """
 @dataclass(init=False)
 class NcOcc{clname}(NCOcc):
-    def __init__(self,libs:dict = cmdlib.{libname}):
+    def __init__(self,libs:dict = cmdlib.{path_to}):
         if libs is None:
             libs = {}
         super().__init__(libs)
 """
 
 func_ref_normal ="""
-    def {funcname}(self):
+    def {funcname}(self)-> str:
         cmd = self._lib['{libname}']['command']
         return self._process([cmd])            
 """
@@ -27,9 +27,8 @@ func_ref_objs ="""
         return self._lib['{libname}']
 """
 
-py_imports = """
-import occ_command_lib as cmdlib
-from logic import NCOcc
+py_imports = """from lib_occ import occ_command_lib as cmdlib
+from lib_occ.logic import NCOcc
 from dataclasses import dataclass
 """
 
@@ -37,10 +36,15 @@ two_param = ['add','delete','edit','update','put','get','transfer-ownership']
 
 
 
-def generate_classes(skel:dict,classname:str,libname:str):
+def generate_classes(skel:dict,classname:str,libname:str,path_to:str=None):
     out=""
     subclasses = []
-    cl = header.format('{}',clname = classname,libname = libname,)
+    if path_to is not None:
+        path_to = f"{path_to}['{libname}']"
+    else:
+        path_to=libname
+    print(skel)
+    cl = header.format('{}',clname = classname,libname = libname,path_to=path_to)
     out += cl
 
     for k,v in skel.items():
@@ -50,13 +54,14 @@ def generate_classes(skel:dict,classname:str,libname:str):
             break
         if len(v) > 3 or 'command' not in v.keys():
             ss = str(k).capitalize()
-            subclasses.append(generate_classes(v,f"{classname}{ss}",ss.lower()))
+            subclasses.append(generate_classes(skel=v,classname=f"{classname}{ss}",libname=ss.lower(),path_to=path_to))
             ref = func_ref_objs
         if k in two_param:
             ref = func_ref_param
+        funcname = k
         if "-" in k:
-            k = k.replace("-","_")
-        func = ref.format(funcname=k,libname=libname)
+            funcname = k.replace("-","_")
+        func = ref.format(funcname=funcname,libname=k)
         out += func
     subs = reversed(subclasses)
     grand_out =""
