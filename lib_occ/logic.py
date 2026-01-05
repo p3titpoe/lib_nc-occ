@@ -10,9 +10,10 @@ root = base.parent
 
 @dataclass
 class NCOcc:
+    _lib:dict[str:str]
     name:str = None
-    _lib:dict[str:str] =field(default_factory=dict)
     _output = "--output=json"
+
     def _set_lib(self,name:str,value:str):
         if name not in self._lib and isinstance(value,str):
             self._lib[name] = value

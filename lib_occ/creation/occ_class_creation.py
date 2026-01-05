@@ -50,6 +50,10 @@ cls_names = ClsNameLib()
 def generate_classes(skel:dict,classname:str,libname:str,path_to:str=None):
     out=""
     subclasses = []
+    if "-" in classname:
+        excn = classname.split("-")
+        classname = f"{excn[0]}{excn[1].capitalize()}"
+        print(classname)
     if path_to is not None:
         path_to = f"{path_to}['{libname}']"
     else:
@@ -107,10 +111,10 @@ def compose_classes() :
         nn = ",".join(gen_classnames)
         # import_base = import_base+" "+",".join(gen_classnames)
         import_base = import_base+" "+nn
-        print("Created classes",nn)
+        # print("Created classes",nn)
         # print(import_base)
 
-        update_init(f"{import_base}\n")
+        # update_init(f"{import_base}\n")
         cls_names.rm()
 
 

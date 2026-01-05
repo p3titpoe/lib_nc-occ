@@ -5,9 +5,7 @@ from dataclasses import dataclass
 @dataclass(init=False)
 class NcOccTagFiles(NCOcc):
     def __init__(self,libs:dict = cmdlib.tag['files']):
-        if libs is None:
-            libs = {}
-        super().__init__(libs)
+        super().__init__(_lib=libs)
 
     def add(self,value):
         cmd = self._lib['add']['command']
@@ -23,7 +21,9 @@ class NcOccTagFiles(NCOcc):
 
 @dataclass(init=False)
 class NcOccTag(NCOcc):
+
     def __init__(self,libs:dict = cmdlib.tag):
+        print(libs)
         if libs is None:
             libs = {}
         super().__init__(libs)
