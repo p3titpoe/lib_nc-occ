@@ -25,6 +25,10 @@ class NCOcc:
     name:str = None
     _output = "--output=json"
 
+    def __post_init__(self):
+        self.name = self.__class__.__name__.replace("NcOcc","")
+        print(self.name)
+
     def _set_lib(self,name:str,value:str):
         if name not in self._lib and isinstance(value,str):
             self._lib[name] = value
@@ -55,7 +59,25 @@ class NCOcc:
         result = subprocess.run(args=proc, capture_output=capture_output,text=True)
         res = OccResponse(result)
         return (res)
-        # return ff
+
+    @property
+    def section_func_list(self, inlist:dict = None):
+        wdict:dict = self._lib
+        if inlist is not  None:
+            wdict = inlist
+        max = sorted([len(x) for x in wdict.keys()],reverse=True)[0]
+
+        ll = {k:v['desc'] if isinstance(v,dict) else f"Link to Object"  for k,v in wdict.items()}
+        print(f"### METHODS for Object {self.name} ###")
+        for k, v in ll.items():
+            if "occ_lib" not in k:
+                ind = max-len(k)
+                print(f"-- {k} {'':<{ind}}: {v}")
+        print()
+
+
+
+
 
 
 
