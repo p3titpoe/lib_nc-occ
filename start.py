@@ -1,10 +1,10 @@
 #!/usr/bin/python
 #from lib import nc_occ as occ
 #from .lib import nc_occ as occ
-from lib_occ.nc_occ.tag import NcOccTag
+from lib_occ.nc_occ import Tag
 from pprint import pp
 
-tt = NcOccTag()
+tt = Tag()
 rs = tt.lists()
 
 print(rs)

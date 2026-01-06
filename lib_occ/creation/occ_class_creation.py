@@ -175,7 +175,7 @@ def compose_classes(write_files=True, write_ini=True,verbose=True,debug_txt=Fals
         cls_names.rm()
         fname = f"{section}{suffix}"
         filename = f"{base}/lib/{fname}.py"
-        import_base = f"from lib import {fname} as {section}"
+        # import_base = f"from lib import {fname} as {section}"
 
         filetxt = ""
         filetxt += py_imports
@@ -194,8 +194,13 @@ def compose_classes(write_files=True, write_ini=True,verbose=True,debug_txt=Fals
         if write_files:
             with open(filename,"w") as fn:
                 fn.write(filetxt)
-        gen_classnames = reversed(cls_names.make_prefixed_names())
+        rev = reversed(cls_names.make_prefixed_names())
+        gen_classnames = [s for s in rev]
+        # print(gen_classnames)
         nn = ",".join(gen_classnames)
+        import_base = f"from .lib.{fname} import {gen_classnames[-1]} as {section.capitalize()}"
+
+
         # import_base = import_base+" "+",".join(gen_classnames)
         # import_base = import_base+" "+nn
 
