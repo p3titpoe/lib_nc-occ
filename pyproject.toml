@@ -23,7 +23,7 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 
-
 [project.urls]
 Homepage = "https://github.com/p3titpoe/lib_nc-occ"
+Repository = "https://github.com/p3titpoe/lib_nc-occ.git"
 Issues = "https://github.com/p3titpoe/lib_nc-occ/issues"
