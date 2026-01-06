@@ -2,11 +2,22 @@ import subprocess
 from pprint import pp
 from pathlib import Path
 from dataclasses import dataclass,field
-
+from json import loads
 base = Path(__file__).parent
 root = base.parent
 
 
+@dataclass(init=False)
+class OccResponse:
+    response:str = ""
+    cmd:str = ""
+    rtype:str = ""
+
+    def __init__(self,resp:subprocess.CompletedProcess):
+        rsp = resp.stderr if resp.stdout == "" else resp.stdout
+        self.response = loads(rsp)
+        self.cmd = resp.args[1]
+        self.rtype = type(self.response)
 
 @dataclass
 class NCOcc:
@@ -35,15 +46,15 @@ class NCOcc:
             out = True
         return out
 
-    def _process(self,args:str|list,capture_output:bool=True,txt:bool=True):
+    def _process(self,args:str|list,capture_output:bool=True,txt:bool=True)->OccResponse:
         arg = ['sudo','-u ','www-data php','/var/www/nextcloud/occ']
         args.append(self._output)
         arg.extend(args)
         proc:list = [f"{str(base)}/./process.sh"]
         proc.extend(args)
         result = subprocess.run(args=proc, capture_output=capture_output,text=True)
-        # print(result)
-        return (result)
+        res = OccResponse(result)
+        return (res)
         # return ff
 
 
