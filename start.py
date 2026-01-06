@@ -1,5 +1,5 @@
 #!/usr/bin/python
-from lib_occ.nc_occ import tag
+from .nc_occ import common
 from pprint import pp
 
 tt = tag.NcOccTag()
