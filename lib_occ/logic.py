@@ -39,7 +39,7 @@ class NCOcc:
         arg = ['sudo','-u ','www-data php','/var/www/nextcloud/occ']
         args.append(self._output)
         arg.extend(args)
-        # print(arg)
+        # proc = "base"
         result = subprocess.run(args=arg, capture_output=capture_output,text=True)
         print(result)
         return (result.stdout)
