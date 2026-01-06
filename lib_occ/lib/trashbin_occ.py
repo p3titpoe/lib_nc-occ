@@ -9,23 +9,23 @@ class NcOccTrashbin(NCOcc):
             libs = {}
         super().__init__(libs)
         
-
-    def cleanup(self)-> str:
+    def cleanup(self):
         " Remove deleted files"
         cmd = self._lib['cleanup']['command']
-        return self._process([cmd])            
-
-    def expire(self)-> str:
+        return self._process([cmd])
+                    
+    def expire(self):
         "Expires the users trashbin"
         cmd = self._lib['expire']['command']
-        return self._process([cmd])            
-
-    def restore(self)-> str:
+        return self._process([cmd])
+                    
+    def restore(self):
         " Restore all deleted files according to the given filters"
         cmd = self._lib['restore']['command']
-        return self._process([cmd])            
-
-    def size(self)-> str:
+        return self._process([cmd])
+                    
+    def size(self):
         "Configure the target trashbin size"
         cmd = self._lib['size']['command']
-        return self._process([cmd])            
+        return self._process([cmd])
+                    

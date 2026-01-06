@@ -9,26 +9,26 @@ class NcOccTaskprocessingTask(NCOcc):
             libs = {}
         super().__init__(libs)
         
-
-    def cleanup(self)-> str:
+    def cleanup(self):
         "cleanup old tasks"
         cmd = self._lib['cleanup']['command']
-        return self._process([cmd])            
-
-    def get(self,value):
+        return self._process([cmd])
+                    
+    def get(self,value) -> str:
         "Display all information for a specific task"
         cmd = self._lib['get']['command']
         return self._process([cmd,value])       
 
-    def list(self)-> str:
+    def lists(self):
         " list tasks"
         cmd = self._lib['list']['command']
-        return self._process([cmd])            
-
-    def stats(self)-> str:
+        return self._process([cmd])
+                    
+    def stats(self):
         "get statistics for tasks"
         cmd = self._lib['stats']['command']
-        return self._process([cmd])            
+        return self._process([cmd])
+                    
 
 @dataclass(init=False)
 class NcOccTaskprocessingTaskType(NCOcc):
@@ -37,11 +37,11 @@ class NcOccTaskprocessingTaskType(NCOcc):
             libs = {}
         super().__init__(libs)
         
-
-    def set_enabled(self)-> str:
+    def set_enabled(self):
         " Enable or disable a task type"
         cmd = self._lib['set-enabled']['command']
-        return self._process([cmd])            
+        return self._process([cmd])
+                    
 
 @dataclass(init=False)
 class NcOccTaskprocessing(NCOcc):
@@ -57,13 +57,13 @@ class NcOccTaskprocessing(NCOcc):
             }
         self._generate_subobjs(to_create)
         
-
     @property
-    def task_type(self)->NCOcc:
+    def task_type(self)->NcOccTaskprocessingTaskType:
         "Returns corresponding object :: "
         return self._lib['task-type']
 
     @property
-    def task(self)->NCOcc:
+    def task(self)->NcOccTaskprocessingTask:
         "Returns corresponding object :: "
         return self._lib['task']
+

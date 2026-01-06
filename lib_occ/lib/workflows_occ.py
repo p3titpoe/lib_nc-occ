@@ -9,8 +9,8 @@ class NcOccWorkflows(NCOcc):
             libs = {}
         super().__init__(libs)
         
-
-    def list(self)-> str:
+    def lists(self):
         " Lists configured workflows"
         cmd = self._lib['list']['command']
-        return self._process([cmd])            
+        return self._process([cmd])
+                    

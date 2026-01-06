@@ -9,21 +9,21 @@ class NcOccTagFiles(NCOcc):
             libs = {}
         super().__init__(libs)
         
-
-    def add(self,value):
+    def add(self,value) -> str:
         "Add a systemtag to a file or folder"
         cmd = self._lib['add']['command']
         return self._process([cmd,value])       
 
-    def delete(self,value):
+    def delete(self,value) -> str:
         " Delete a systemtag from a file or folder"
         cmd = self._lib['delete']['command']
         return self._process([cmd,value])       
 
-    def delete_all(self)-> str:
+    def delete_all(self):
         " Delete all systemtags from a file or folder"
         cmd = self._lib['delete-all']['command']
-        return self._process([cmd])            
+        return self._process([cmd])
+                    
 
 @dataclass(init=False)
 class NcOccTag(NCOcc):
@@ -38,28 +38,28 @@ class NcOccTag(NCOcc):
             }
         self._generate_subobjs(to_create)
         
-
-    def add(self,value):
+    def add(self,value) -> str:
         "Add new tag"
         cmd = self._lib['add']['command']
         return self._process([cmd,value])       
 
-    def delete(self,value):
+    def delete(self,value) -> str:
         " delete a tag"
         cmd = self._lib['delete']['command']
         return self._process([cmd,value])       
 
-    def edit(self,value):
+    def edit(self,value) -> str:
         " edit tag attributes"
         cmd = self._lib['edit']['command']
         return self._process([cmd,value])       
 
     @property
-    def files(self)->NCOcc:
+    def files(self)->NcOccTagFiles:
         "Returns corresponding object :: "
         return self._lib['files']
 
-    def list(self)-> str:
+    def lists(self):
         " list tags"
         cmd = self._lib['list']['command']
-        return self._process([cmd])            
+        return self._process([cmd])
+                    

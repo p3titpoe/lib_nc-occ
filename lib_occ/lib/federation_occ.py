@@ -9,13 +9,13 @@ class NcOccFederation(NCOcc):
             libs = {}
         super().__init__(libs)
         
-
-    def sync_addressbooks(self)-> str:
+    def sync_addressbooks(self):
         " Synchronizes addressbooks of all federated clouds"
         cmd = self._lib['sync-addressbooks']['command']
-        return self._process([cmd])            
-
-    def sync_calendars(self)-> str:
+        return self._process([cmd])
+                    
+    def sync_calendars(self):
         "Synchronize all incoming federated calendar shares"
         cmd = self._lib['sync-calendars']['command']
-        return self._process([cmd])            
+        return self._process([cmd])
+                    

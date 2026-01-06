@@ -9,23 +9,23 @@ class NcOccBackgroundjob(NCOcc):
             libs = {}
         super().__init__(libs)
         
-
-    def delete(self,value):
+    def delete(self,value) -> str:
         "Remove a background job from database"
         cmd = self._lib['delete']['command']
         return self._process([cmd,value])       
 
-    def execute(self)-> str:
+    def execute(self):
         " Execute a single background job manually"
         cmd = self._lib['execute']['command']
-        return self._process([cmd])            
-
-    def list(self)-> str:
+        return self._process([cmd])
+                    
+    def lists(self):
         "List background jobs"
         cmd = self._lib['list']['command']
-        return self._process([cmd])            
-
-    def worker(self)-> str:
+        return self._process([cmd])
+                    
+    def worker(self):
         "Run a background job worker"
         cmd = self._lib['worker']['command']
-        return self._process([cmd])            
+        return self._process([cmd])
+                    

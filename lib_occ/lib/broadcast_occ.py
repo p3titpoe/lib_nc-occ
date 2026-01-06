@@ -9,8 +9,8 @@ class NcOccBroadcast(NCOcc):
             libs = {}
         super().__init__(libs)
         
-
-    def test(self)-> str:
+    def test(self):
         " test the SSE broadcaster"
         cmd = self._lib['test']['command']
-        return self._process([cmd])            
+        return self._process([cmd])
+                    

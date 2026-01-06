@@ -9,38 +9,38 @@ class NcOccCommon(NCOcc):
             libs = {}
         super().__init__(libs)
         
-
-    def check(self)-> str:
+    def check(self):
         "check dependencies of the server environment"
         cmd = self._lib['check']['command']
-        return self._process([cmd])            
-
-    def completion(self)-> str:
+        return self._process([cmd])
+                    
+    def completion(self):
         " Dump the shell completion script"
         cmd = self._lib['completion']['command']
-        return self._process([cmd])            
-
-    def help(self)-> str:
+        return self._process([cmd])
+                    
+    def help(self):
         " Display help for a command"
         cmd = self._lib['help']['command']
-        return self._process([cmd])            
-
-    def list(self)-> str:
+        return self._process([cmd])
+                    
+    def lists(self):
         " List commands"
         cmd = self._lib['list']['command']
-        return self._process([cmd])            
-
-    def setupchecks(self)-> str:
+        return self._process([cmd])
+                    
+    def setupchecks(self):
         "Run setup checks and output the results"
         cmd = self._lib['setupchecks']['command']
-        return self._process([cmd])            
-
-    def status(self)-> str:
+        return self._process([cmd])
+                    
+    def status(self):
         " show some status information"
         cmd = self._lib['status']['command']
-        return self._process([cmd])            
-
-    def upgrade(self)-> str:
+        return self._process([cmd])
+                    
+    def upgrade(self):
         "run upgrade routines after installation of a new release The release has to be installed before"
         cmd = self._lib['upgrade']['command']
-        return self._process([cmd])            
+        return self._process([cmd])
+                    

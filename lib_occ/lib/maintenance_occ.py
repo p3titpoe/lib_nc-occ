@@ -9,11 +9,11 @@ class NcOccMaintenanceUpdate(NCOcc):
             libs = {}
         super().__init__(libs)
         
-
-    def htaccess(self)-> str:
+    def htaccess(self):
         "Updates the htaccess file"
         cmd = self._lib['htaccess']['command']
-        return self._process([cmd])            
+        return self._process([cmd])
+                    
 
 @dataclass(init=False)
 class NcOccMaintenanceTheme(NCOcc):
@@ -22,11 +22,11 @@ class NcOccMaintenanceTheme(NCOcc):
             libs = {}
         super().__init__(libs)
         
-
-    def update(self,value):
+    def update(self,value) -> str:
         " Apply custom theme changes"
         cmd = self._lib['update']['command']
         return self._process([cmd,value])       
+
 
 @dataclass(init=False)
 class NcOccMaintenanceMimetype(NCOcc):
@@ -35,16 +35,16 @@ class NcOccMaintenanceMimetype(NCOcc):
             libs = {}
         super().__init__(libs)
         
-
-    def update_db(self)-> str:
+    def update_db(self):
         " Update database mimetypes and update filecache"
         cmd = self._lib['update-db']['command']
-        return self._process([cmd])            
-
-    def update_js(self)-> str:
+        return self._process([cmd])
+                    
+    def update_js(self):
         " Update mimetypelistjs"
         cmd = self._lib['update-js']['command']
-        return self._process([cmd])            
+        return self._process([cmd])
+                    
 
 @dataclass(init=False)
 class NcOccMaintenance(NCOcc):
@@ -61,38 +61,38 @@ class NcOccMaintenance(NCOcc):
             }
         self._generate_subobjs(to_create)
         
-
-    def data_fingerprint(self)-> str:
+    def data_fingerprint(self):
         " update the systems datafingerprint after a backup is restored"
         cmd = self._lib['data-fingerprint']['command']
-        return self._process([cmd])            
-
+        return self._process([cmd])
+                    
     @property
-    def mimetype(self)->NCOcc:
+    def mimetype(self)->NcOccMaintenanceMimetype:
         "Returns corresponding object :: "
         return self._lib['mimetype']
 
-    def mode(self)-> str:
+    def mode(self):
         " Show or toggle maintenance mode status"
         cmd = self._lib['mode']['command']
-        return self._process([cmd])            
-
-    def repair(self)-> str:
+        return self._process([cmd])
+                    
+    def repair(self):
         " repair this installation"
         cmd = self._lib['repair']['command']
-        return self._process([cmd])            
-
-    def repair_share_owner(self)-> str:
+        return self._process([cmd])
+                    
+    def repair_share_owner(self):
         " repair invalid shareowner entries in the database"
         cmd = self._lib['repair-share-owner']['command']
-        return self._process([cmd])            
-
+        return self._process([cmd])
+                    
     @property
-    def theme(self)->NCOcc:
+    def theme(self)->NcOccMaintenanceTheme:
         "Returns corresponding object :: "
         return self._lib['theme']
 
-    def update(self,value):
+    def update(self,value) -> str:
         ""
         cmd = self._lib['update']['command']
         return self._process([cmd,value])       
+

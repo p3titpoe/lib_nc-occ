@@ -9,23 +9,23 @@ class NcOccPreview(NCOcc):
             libs = {}
         super().__init__(libs)
         
-
-    def cleanup(self)-> str:
+    def cleanup(self):
         "Removes existing preview files"
         cmd = self._lib['cleanup']['command']
-        return self._process([cmd])            
-
-    def generate(self)-> str:
+        return self._process([cmd])
+                    
+    def generate(self):
         " generate a preview for a file"
         cmd = self._lib['generate']['command']
-        return self._process([cmd])            
-
-    def repair(self)-> str:
+        return self._process([cmd])
+                    
+    def repair(self):
         " distributes the existing previews into subfolders"
         cmd = self._lib['repair']['command']
-        return self._process([cmd])            
-
-    def reset_rendered_texts(self)-> str:
+        return self._process([cmd])
+                    
+    def reset_rendered_texts(self):
         " Deletes all generated avatars and previews of text and md files"
         cmd = self._lib['reset-rendered-texts']['command']
-        return self._process([cmd])            
+        return self._process([cmd])
+                    

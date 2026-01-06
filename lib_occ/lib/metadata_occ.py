@@ -9,8 +9,8 @@ class NcOccMetadata(NCOcc):
             libs = {}
         super().__init__(libs)
         
-
-    def get(self,value):
+    def get(self,value) -> str:
         " get stored metadata about a file by its id"
         cmd = self._lib['get']['command']
         return self._process([cmd,value])       
+

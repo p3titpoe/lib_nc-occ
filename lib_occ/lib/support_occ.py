@@ -9,8 +9,8 @@ class NcOccSupport(NCOcc):
             libs = {}
         super().__init__(libs)
         
-
-    def report(self)-> str:
+    def report(self):
         " Generate a system report"
         cmd = self._lib['report']['command']
-        return self._process([cmd])            
+        return self._process([cmd])
+                    

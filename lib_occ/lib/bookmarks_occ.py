@@ -9,8 +9,8 @@ class NcOccBookmarks(NCOcc):
             libs = {}
         super().__init__(libs)
         
-
-    def clear_previews(self)-> str:
+    def clear_previews(self):
         " Clear all cached bookmarks previews so that they have to be regenerated"
         cmd = self._lib['clear-previews']['command']
-        return self._process([cmd])            
+        return self._process([cmd])
+                    

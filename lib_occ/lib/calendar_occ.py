@@ -9,13 +9,13 @@ class NcOccCalendar(NCOcc):
             libs = {}
         super().__init__(libs)
         
-
-    def export(self)-> str:
+    def export(self):
         "Export calendar data from supported calendars to disk or stdout"
         cmd = self._lib['export']['command']
-        return self._process([cmd])            
-
-    def imports(self)-> str:
+        return self._process([cmd])
+                    
+    def imports(self):
         "Import calendar data to supported calendars from disk or stdin"
         cmd = self._lib['import']['command']
-        return self._process([cmd])            
+        return self._process([cmd])
+                    

@@ -9,26 +9,26 @@ class NcOccMemcacheDistributed(NCOcc):
             libs = {}
         super().__init__(libs)
         
-
-    def clear(self)-> str:
+    def clear(self):
         " Clear values from the distributed memcache"
         cmd = self._lib['clear']['command']
-        return self._process([cmd])            
-
-    def delete(self,value):
+        return self._process([cmd])
+                    
+    def delete(self,value) -> str:
         "Delete a value in the distributed memcache"
         cmd = self._lib['delete']['command']
         return self._process([cmd,value])       
 
-    def get(self,value):
+    def get(self,value) -> str:
         " Get a value from the distributed memcache"
         cmd = self._lib['get']['command']
         return self._process([cmd,value])       
 
-    def set(self)-> str:
+    def set(self):
         " Set a value in the distributed memcache"
         cmd = self._lib['set']['command']
-        return self._process([cmd])            
+        return self._process([cmd])
+                    
 
 @dataclass(init=False)
 class NcOccMemcache(NCOcc):
@@ -43,13 +43,13 @@ class NcOccMemcache(NCOcc):
             }
         self._generate_subobjs(to_create)
         
-
     @property
-    def distributed(self)->NCOcc:
+    def distributed(self)->NcOccMemcacheDistributed:
         "Returns corresponding object :: "
         return self._lib['distributed']
 
-    def redis(self)-> str:
+    def redis(self):
         ""
         cmd = self._lib['redis']['command']
-        return self._process([cmd])            
+        return self._process([cmd])
+                    

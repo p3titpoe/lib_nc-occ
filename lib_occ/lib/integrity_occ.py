@@ -9,23 +9,23 @@ class NcOccIntegrity(NCOcc):
             libs = {}
         super().__init__(libs)
         
-
-    def check_app(self)-> str:
+    def check_app(self):
         "Check integrity of an app using a signature"
         cmd = self._lib['check-app']['command']
-        return self._process([cmd])            
-
-    def check_core(self)-> str:
+        return self._process([cmd])
+                    
+    def check_core(self):
         " Check integrity of core code using a signature"
         cmd = self._lib['check-core']['command']
-        return self._process([cmd])            
-
-    def sign_app(self)-> str:
+        return self._process([cmd])
+                    
+    def sign_app(self):
         " Signs an app using a private key"
         cmd = self._lib['sign-app']['command']
-        return self._process([cmd])            
-
-    def sign_core(self)-> str:
+        return self._process([cmd])
+                    
+    def sign_core(self):
         "Sign core using a private key"
         cmd = self._lib['sign-core']['command']
-        return self._process([cmd])            
+        return self._process([cmd])
+                    

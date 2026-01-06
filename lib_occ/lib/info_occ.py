@@ -9,16 +9,16 @@ class NcOccInfoFile(NCOcc):
             libs = {}
         super().__init__(libs)
         
-
-    def file(self)-> str:
+    def file(self):
         "get information for a file"
         cmd = self._lib['file']['command']
-        return self._process([cmd])            
-
-    def space(self)-> str:
+        return self._process([cmd])
+                    
+    def space(self):
         "Summarize space usage of specified folder"
         cmd = self._lib['space']['command']
-        return self._process([cmd])            
+        return self._process([cmd])
+                    
 
 @dataclass(init=False)
 class NcOccInfo(NCOcc):
@@ -33,18 +33,18 @@ class NcOccInfo(NCOcc):
             }
         self._generate_subobjs(to_create)
         
-
     @property
-    def file(self)->NCOcc:
+    def file(self)->NcOccInfoFile:
         "Returns corresponding object :: "
         return self._lib['file']
 
-    def storage(self)-> str:
+    def storage(self):
         " Get information a single storage"
         cmd = self._lib['storage']['command']
-        return self._process([cmd])            
-
-    def storages(self)-> str:
+        return self._process([cmd])
+                    
+    def storages(self):
         "List storages ordered by the number of files"
         cmd = self._lib['storages']['command']
-        return self._process([cmd])            
+        return self._process([cmd])
+                    

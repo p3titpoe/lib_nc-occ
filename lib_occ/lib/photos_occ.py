@@ -9,16 +9,16 @@ class NcOccPhotosAlbums(NCOcc):
             libs = {}
         super().__init__(libs)
         
-
-    def add(self,value):
+    def add(self,value) -> str:
         "Add specified photo to album"
         cmd = self._lib['add']['command']
         return self._process([cmd,value])       
 
-    def create(self)-> str:
+    def create(self):
         " Create a new album for a user"
         cmd = self._lib['create']['command']
-        return self._process([cmd])            
+        return self._process([cmd])
+                    
 
 @dataclass(init=False)
 class NcOccPhotos(NCOcc):
@@ -33,13 +33,13 @@ class NcOccPhotos(NCOcc):
             }
         self._generate_subobjs(to_create)
         
-
     @property
-    def albums(self)->NCOcc:
+    def albums(self)->NcOccPhotosAlbums:
         "Returns corresponding object :: "
         return self._lib['albums']
 
-    def update_1000_cities(self)-> str:
+    def update_1000_cities(self):
         "Update the list of 1000 and more inhabitant cities"
         cmd = self._lib['update-1000-cities']['command']
-        return self._process([cmd])            
+        return self._process([cmd])
+                    

@@ -9,23 +9,23 @@ class NcOccSharing(NCOcc):
             libs = {}
         super().__init__(libs)
         
-
-    def cleanup_remote_storages(self)-> str:
+    def cleanup_remote_storages(self):
         "Cleanup shared storage entries that have no matching entry in the sharesexternal table"
         cmd = self._lib['cleanup-remote-storages']['command']
-        return self._process([cmd])            
-
-    def delete_orphan_shares(self)-> str:
+        return self._process([cmd])
+                    
+    def delete_orphan_shares(self):
         " Delete shares where the owner no longer has access to the file"
         cmd = self._lib['delete-orphan-shares']['command']
-        return self._process([cmd])            
-
-    def expiration_notification(self)-> str:
+        return self._process([cmd])
+                    
+    def expiration_notification(self):
         "Notify share initiators when a share will expire the next day"
         cmd = self._lib['expiration-notification']['command']
-        return self._process([cmd])            
-
-    def fix_share_owners(self)-> str:
+        return self._process([cmd])
+                    
+    def fix_share_owners(self):
         " Fix owner of broken shares after transfer ownership on old versions"
         cmd = self._lib['fix-share-owners']['command']
-        return self._process([cmd])            
+        return self._process([cmd])
+                    

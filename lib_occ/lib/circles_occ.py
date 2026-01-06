@@ -9,11 +9,11 @@ class NcOccCirclesShares(NCOcc):
             libs = {}
         super().__init__(libs)
         
-
-    def files(self)-> str:
+    def files(self):
         " listing shares files"
         cmd = self._lib['files']['command']
-        return self._process([cmd])            
+        return self._process([cmd])
+                    
 
 @dataclass(init=False)
 class NcOccCirclesMigrate(NCOcc):
@@ -22,11 +22,11 @@ class NcOccCirclesMigrate(NCOcc):
             libs = {}
         super().__init__(libs)
         
-
-    def customgroups(self)-> str:
+    def customgroups(self):
         " "
         cmd = self._lib['customgroups']['command']
-        return self._process([cmd])            
+        return self._process([cmd])
+                    
 
 @dataclass(init=False)
 class NcOccCirclesMembers(NCOcc):
@@ -35,36 +35,36 @@ class NcOccCirclesMembers(NCOcc):
             libs = {}
         super().__init__(libs)
         
-
-    def add(self,value):
+    def add(self,value) -> str:
         "Add a member to a Team"
         cmd = self._lib['add']['command']
         return self._process([cmd,value])       
 
-    def details(self)-> str:
+    def details(self):
         "get details about a member by its ID"
         cmd = self._lib['details']['command']
-        return self._process([cmd])            
-
-    def level(self)-> str:
+        return self._process([cmd])
+                    
+    def level(self):
         "Change the level of a member from a Team"
         cmd = self._lib['level']['command']
-        return self._process([cmd])            
-
-    def list(self)-> str:
+        return self._process([cmd])
+                    
+    def lists(self):
         " listing Members from a Team"
         cmd = self._lib['list']['command']
-        return self._process([cmd])            
-
-    def remove(self)-> str:
+        return self._process([cmd])
+                    
+    def remove(self):
         " remove a member from a team"
         cmd = self._lib['remove']['command']
-        return self._process([cmd])            
-
-    def search(self)-> str:
+        return self._process([cmd])
+                    
+    def search(self):
         " Change the level of a member from a Team"
         cmd = self._lib['search']['command']
-        return self._process([cmd])            
+        return self._process([cmd])
+                    
 
 @dataclass(init=False)
 class NcOccCirclesManage(NCOcc):
@@ -73,51 +73,51 @@ class NcOccCirclesManage(NCOcc):
             libs = {}
         super().__init__(libs)
         
-
-    def config(self)-> str:
+    def config(self):
         "edit configtype of a Team"
         cmd = self._lib['config']['command']
-        return self._process([cmd])            
-
-    def create(self)-> str:
+        return self._process([cmd])
+                    
+    def create(self):
         "create a new team"
         cmd = self._lib['create']['command']
-        return self._process([cmd])            
-
-    def destroy(self)-> str:
+        return self._process([cmd])
+                    
+    def destroy(self):
         " destroy a circle by its ID"
         cmd = self._lib['destroy']['command']
-        return self._process([cmd])            
-
-    def details(self)-> str:
+        return self._process([cmd])
+                    
+    def details(self):
         " get details about a team by its ID"
         cmd = self._lib['details']['command']
-        return self._process([cmd])            
-
-    def edit(self,value):
+        return self._process([cmd])
+                    
+    def edit(self,value) -> str:
         "Team"
         cmd = self._lib['edit']['command']
         return self._process([cmd,value])       
 
-    def join(self)-> str:
+    def join(self):
         "emulate a user joining a Team"
         cmd = self._lib['join']['command']
-        return self._process([cmd])            
-
-    def leave(self)-> str:
+        return self._process([cmd])
+                    
+    def leave(self):
         " simulate a user joining a Team"
         cmd = self._lib['leave']['command']
-        return self._process([cmd])            
-
-    def list(self)-> str:
+        return self._process([cmd])
+                    
+    def lists(self):
         "listing current teams"
         cmd = self._lib['list']['command']
-        return self._process([cmd])            
-
-    def setting(self)-> str:
+        return self._process([cmd])
+                    
+    def setting(self):
         " edit setting for a Team"
         cmd = self._lib['setting']['command']
-        return self._process([cmd])            
+        return self._process([cmd])
+                    
 
 @dataclass(init=False)
 class NcOccCircles(NCOcc):
@@ -135,53 +135,53 @@ class NcOccCircles(NCOcc):
             }
         self._generate_subobjs(to_create)
         
-
-    def check(self)-> str:
+    def check(self):
         "Checking your configuration"
         cmd = self._lib['check']['command']
-        return self._process([cmd])            
-
-    def maintenance(self)-> str:
+        return self._process([cmd])
+                    
+    def maintenance(self):
         "Clean stuff keeps the app running"
         cmd = self._lib['maintenance']['command']
-        return self._process([cmd])            
-
+        return self._process([cmd])
+                    
     @property
-    def manage(self)->NCOcc:
+    def manage(self)->NcOccCirclesManage:
         "Returns corresponding object :: "
         return self._lib['manage']
 
     @property
-    def members(self)->NCOcc:
+    def members(self)->NcOccCirclesMembers:
         "Returns corresponding object :: "
         return self._lib['members']
 
-    def memberships(self)-> str:
+    def memberships(self):
         "index and display memberships for local and federated users"
         cmd = self._lib['memberships']['command']
-        return self._process([cmd])            
-
+        return self._process([cmd])
+                    
     @property
-    def migrate(self)->NCOcc:
+    def migrate(self)->NcOccCirclesMigrate:
         "Returns corresponding object :: "
         return self._lib['migrate']
 
-    def remote(self)-> str:
+    def remote(self):
         " remote features"
         cmd = self._lib['remote']['command']
-        return self._process([cmd])            
-
+        return self._process([cmd])
+                    
     @property
-    def shares(self)->NCOcc:
+    def shares(self)->NcOccCirclesShares:
         "Returns corresponding object :: "
         return self._lib['shares']
 
-    def sync(self)-> str:
+    def sync(self):
         " Sync Circles and Members"
         cmd = self._lib['sync']['command']
-        return self._process([cmd])            
-
-    def test(self)-> str:
+        return self._process([cmd])
+                    
+    def test(self):
         " testing some features"
         cmd = self._lib['test']['command']
-        return self._process([cmd])            
+        return self._process([cmd])
+                    

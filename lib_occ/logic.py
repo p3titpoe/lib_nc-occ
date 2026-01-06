@@ -36,11 +36,13 @@ class NCOcc:
         return out
 
     def _process(self,args:str|list,capture_output:bool=True,txt:bool=True):
+        arg = ['sudo','-u ','www-data php','/var/www/nextcloud/occ']
         args.append(self._output)
-        ff = f"args={args}, capture_output={capture_output},text={txt}"
-        # result = subprocess.run(args=args, capture_output=capture_output,text=txt)
-        # return (result.stdout)
-        return ff
+        arg.extend(args)
+        print(arg)
+        result = subprocess.run(args=arg, capture_output=capture_output,text=txt)
+        return (result.stdout)
+        # return ff
 
 
 

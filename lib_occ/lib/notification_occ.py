@@ -9,18 +9,18 @@ class NcOccNotification(NCOcc):
             libs = {}
         super().__init__(libs)
         
-
-    def delete(self,value):
+    def delete(self,value) -> str:
         "Delete a generated admin notification for the given user"
         cmd = self._lib['delete']['command']
         return self._process([cmd,value])       
 
-    def generate(self)-> str:
+    def generate(self):
         "Generate a notification for the given user"
         cmd = self._lib['generate']['command']
-        return self._process([cmd])            
-
-    def test_push(self)-> str:
+        return self._process([cmd])
+                    
+    def test_push(self):
         " Generate a notification for the given user"
         cmd = self._lib['test-push']['command']
-        return self._process([cmd])            
+        return self._process([cmd])
+                    

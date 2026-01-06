@@ -9,26 +9,26 @@ class NcOccSecurityCertificates(NCOcc):
             libs = {}
         super().__init__(libs)
         
-
-    def certificates(self)-> str:
+    def certificates(self):
         "list trusted certificates"
         cmd = self._lib['certificates']['command']
-        return self._process([cmd])            
-
-    def export(self)-> str:
+        return self._process([cmd])
+                    
+    def export(self):
         " export the certificate bundle"
         cmd = self._lib['export']['command']
-        return self._process([cmd])            
-
-    def imports(self)-> str:
+        return self._process([cmd])
+                    
+    def imports(self):
         " import trusted certificate in PEM format"
         cmd = self._lib['import']['command']
-        return self._process([cmd])            
-
-    def remove(self)-> str:
+        return self._process([cmd])
+                    
+    def remove(self):
         " remove trusted certificate"
         cmd = self._lib['remove']['command']
-        return self._process([cmd])            
+        return self._process([cmd])
+                    
 
 @dataclass(init=False)
 class NcOccSecurityBruteforce(NCOcc):
@@ -37,16 +37,16 @@ class NcOccSecurityBruteforce(NCOcc):
             libs = {}
         super().__init__(libs)
         
-
-    def attempts(self)-> str:
+    def attempts(self):
         " Show bruteforce attempts status for a given IP address"
         cmd = self._lib['attempts']['command']
-        return self._process([cmd])            
-
-    def reset(self)-> str:
+        return self._process([cmd])
+                    
+    def reset(self):
         "resets bruteforce attempts for given IP address"
         cmd = self._lib['reset']['command']
-        return self._process([cmd])            
+        return self._process([cmd])
+                    
 
 @dataclass(init=False)
 class NcOccSecurity(NCOcc):
@@ -62,13 +62,13 @@ class NcOccSecurity(NCOcc):
             }
         self._generate_subobjs(to_create)
         
-
     @property
-    def bruteforce(self)->NCOcc:
+    def bruteforce(self)->NcOccSecurityBruteforce:
         "Returns corresponding object :: "
         return self._lib['bruteforce']
 
     @property
-    def certificates(self)->NCOcc:
+    def certificates(self)->NcOccSecurityCertificates:
         "Returns corresponding object :: "
         return self._lib['certificates']
+

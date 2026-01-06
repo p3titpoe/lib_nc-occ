@@ -9,16 +9,16 @@ class NcOccTalkUser(NCOcc):
             libs = {}
         super().__init__(libs)
         
-
-    def remove(self)-> str:
+    def remove(self):
         " Remove a user from all their rooms"
         cmd = self._lib['remove']['command']
-        return self._process([cmd])            
-
-    def transfer_ownership(self,value):
+        return self._process([cmd])
+                    
+    def transfer_ownership(self,value) -> str:
         " Adds the destinationuser with the same participant type to all not onetoone conversations of sourceuser"
         cmd = self._lib['transfer-ownership']['command']
         return self._process([cmd,value])       
+
 
 @dataclass(init=False)
 class NcOccTalkTurn(NCOcc):
@@ -27,21 +27,21 @@ class NcOccTalkTurn(NCOcc):
             libs = {}
         super().__init__(libs)
         
-
-    def add(self,value):
+    def add(self,value) -> str:
         "Add a TURN server"
         cmd = self._lib['add']['command']
         return self._process([cmd,value])       
 
-    def delete(self,value):
+    def delete(self,value) -> str:
         " Remove an existing TURN server"
         cmd = self._lib['delete']['command']
         return self._process([cmd,value])       
 
-    def list(self)-> str:
+    def lists(self):
         " List TURN servers"
         cmd = self._lib['list']['command']
-        return self._process([cmd])            
+        return self._process([cmd])
+                    
 
 @dataclass(init=False)
 class NcOccTalkStun(NCOcc):
@@ -50,21 +50,21 @@ class NcOccTalkStun(NCOcc):
             libs = {}
         super().__init__(libs)
         
-
-    def add(self,value):
+    def add(self,value) -> str:
         "Add a new STUN server"
         cmd = self._lib['add']['command']
         return self._process([cmd,value])       
 
-    def delete(self,value):
+    def delete(self,value) -> str:
         " Remove an existing STUN server"
         cmd = self._lib['delete']['command']
         return self._process([cmd,value])       
 
-    def list(self)-> str:
+    def lists(self):
         " List STUN servers"
         cmd = self._lib['list']['command']
-        return self._process([cmd])            
+        return self._process([cmd])
+                    
 
 @dataclass(init=False)
 class NcOccTalkSignaling(NCOcc):
@@ -73,26 +73,26 @@ class NcOccTalkSignaling(NCOcc):
             libs = {}
         super().__init__(libs)
         
-
-    def add(self,value):
+    def add(self,value) -> str:
         " Add an external signaling server"
         cmd = self._lib['add']['command']
         return self._process([cmd,value])       
 
-    def delete(self,value):
+    def delete(self,value) -> str:
         "Remove an existing signaling server"
         cmd = self._lib['delete']['command']
         return self._process([cmd,value])       
 
-    def list(self)-> str:
+    def lists(self):
         "List external signaling servers"
         cmd = self._lib['list']['command']
-        return self._process([cmd])            
-
-    def verify_keys(self)-> str:
+        return self._process([cmd])
+                    
+    def verify_keys(self):
         " Verify if the stored public key matches the stored private key for the signaling server"
         cmd = self._lib['verify-keys']['command']
-        return self._process([cmd])            
+        return self._process([cmd])
+                    
 
 @dataclass(init=False)
 class NcOccTalkRoom(NCOcc):
@@ -101,41 +101,41 @@ class NcOccTalkRoom(NCOcc):
             libs = {}
         super().__init__(libs)
         
-
-    def add(self,value):
+    def add(self,value) -> str:
         "Adds users to a room"
         cmd = self._lib['add']['command']
         return self._process([cmd,value])       
 
-    def create(self)-> str:
+    def create(self):
         " Create a new room"
         cmd = self._lib['create']['command']
-        return self._process([cmd])            
-
-    def delete(self,value):
+        return self._process([cmd])
+                    
+    def delete(self,value) -> str:
         " Deletes a room"
         cmd = self._lib['delete']['command']
         return self._process([cmd,value])       
 
-    def demote(self)-> str:
+    def demote(self):
         " Demotes participants of a room to regular users"
         cmd = self._lib['demote']['command']
-        return self._process([cmd])            
-
-    def promote(self)-> str:
+        return self._process([cmd])
+                    
+    def promote(self):
         "Promotes participants of a room to moderators"
         cmd = self._lib['promote']['command']
-        return self._process([cmd])            
-
-    def remove(self)-> str:
+        return self._process([cmd])
+                    
+    def remove(self):
         " Remove users from a room"
         cmd = self._lib['remove']['command']
-        return self._process([cmd])            
-
-    def update(self,value):
+        return self._process([cmd])
+                    
+    def update(self,value) -> str:
         " Updates a room"
         cmd = self._lib['update']['command']
         return self._process([cmd,value])       
+
 
 @dataclass(init=False)
 class NcOccTalkRecording(NCOcc):
@@ -144,11 +144,11 @@ class NcOccTalkRecording(NCOcc):
             libs = {}
         super().__init__(libs)
         
-
-    def consent(self)-> str:
+    def consent(self):
         " List all matching consent that were given to be audio and video recorded during a call requires administrator or moderator configuration"
         cmd = self._lib['consent']['command']
-        return self._process([cmd])            
+        return self._process([cmd])
+                    
 
 @dataclass(init=False)
 class NcOccTalkPhoneNumber(NCOcc):
@@ -157,31 +157,31 @@ class NcOccTalkPhoneNumber(NCOcc):
             libs = {}
         super().__init__(libs)
         
-
-    def add(self,value):
+    def add(self,value) -> str:
         "Add a mapping entry to map a phone number to an user"
         cmd = self._lib['add']['command']
         return self._process([cmd,value])       
 
-    def find(self)-> str:
+    def find(self):
         " Find a phone number or the phone number of an user"
         cmd = self._lib['find']['command']
-        return self._process([cmd])            
-
-    def imports(self)-> str:
+        return self._process([cmd])
+                    
+    def imports(self):
         " Import a CSV list format numberuser for SIP dialin"
         cmd = self._lib['import']['command']
-        return self._process([cmd])            
-
-    def remove(self)-> str:
+        return self._process([cmd])
+                    
+    def remove(self):
         " Remove a mapping entry by phone number"
         cmd = self._lib['remove']['command']
-        return self._process([cmd])            
-
-    def remove_user(self)-> str:
+        return self._process([cmd])
+                    
+    def remove_user(self):
         "Remove mapping entries by user"
         cmd = self._lib['remove-user']['command']
-        return self._process([cmd])            
+        return self._process([cmd])
+                    
 
 @dataclass(init=False)
 class NcOccTalkMonitor(NCOcc):
@@ -190,16 +190,16 @@ class NcOccTalkMonitor(NCOcc):
             libs = {}
         super().__init__(libs)
         
-
-    def calls(self)-> str:
+    def calls(self):
         " Prints a list with conversations that have an active call as well as their participant count"
         cmd = self._lib['calls']['command']
-        return self._process([cmd])            
-
-    def room(self)-> str:
+        return self._process([cmd])
+                    
+    def room(self):
         "Prints the number of attendees active sessions and participant in the call"
         cmd = self._lib['room']['command']
-        return self._process([cmd])            
+        return self._process([cmd])
+                    
 
 @dataclass(init=False)
 class NcOccTalkBot(NCOcc):
@@ -208,41 +208,41 @@ class NcOccTalkBot(NCOcc):
             libs = {}
         super().__init__(libs)
         
-
-    def create(self)-> str:
+    def create(self):
         "Creates a new bot on the server with response feature only"
         cmd = self._lib['create']['command']
-        return self._process([cmd])            
-
-    def install(self)-> str:
+        return self._process([cmd])
+                    
+    def install(self):
         " Install a new bot on the server"
         cmd = self._lib['install']['command']
-        return self._process([cmd])            
-
-    def list(self)-> str:
+        return self._process([cmd])
+                    
+    def lists(self):
         "List all installed bots of the server or a conversation"
         cmd = self._lib['list']['command']
-        return self._process([cmd])            
-
-    def remove(self)-> str:
+        return self._process([cmd])
+                    
+    def remove(self):
         "Remove a bot from a conversation"
         cmd = self._lib['remove']['command']
-        return self._process([cmd])            
-
-    def setup(self)-> str:
+        return self._process([cmd])
+                    
+    def setup(self):
         " Add a bot to a conversation"
         cmd = self._lib['setup']['command']
-        return self._process([cmd])            
-
-    def state(self)-> str:
+        return self._process([cmd])
+                    
+    def state(self):
         " Change the state or feature list for a bot"
         cmd = self._lib['state']['command']
-        return self._process([cmd])            
-
-    def uninstall(self)-> str:
+        return self._process([cmd])
+                    
+    def uninstall(self):
         " Uninstall a bot from the server"
         cmd = self._lib['uninstall']['command']
-        return self._process([cmd])            
+        return self._process([cmd])
+                    
 
 @dataclass(init=False)
 class NcOccTalk(NCOcc):
@@ -265,53 +265,53 @@ class NcOccTalk(NCOcc):
             }
         self._generate_subobjs(to_create)
         
-
-    def active_calls(self)-> str:
+    def active_calls(self):
         "Allows you to check if calls are currently in process"
         cmd = self._lib['active-calls']['command']
-        return self._process([cmd])            
-
+        return self._process([cmd])
+                    
     @property
-    def bot(self)->NCOcc:
+    def bot(self)->NcOccTalkBot:
         "Returns corresponding object :: "
         return self._lib['bot']
 
     @property
-    def monitor(self)->NCOcc:
+    def monitor(self)->NcOccTalkMonitor:
         "Returns corresponding object :: "
         return self._lib['monitor']
 
     @property
-    def phone_number(self)->NCOcc:
+    def phone_number(self)->NcOccTalkPhoneNumber:
         "Returns corresponding object :: "
         return self._lib['phone-number']
 
     @property
-    def recording(self)->NCOcc:
+    def recording(self)->NcOccTalkRecording:
         "Returns corresponding object :: "
         return self._lib['recording']
 
     @property
-    def room(self)->NCOcc:
+    def room(self)->NcOccTalkRoom:
         "Returns corresponding object :: "
         return self._lib['room']
 
     @property
-    def signaling(self)->NCOcc:
+    def signaling(self)->NcOccTalkSignaling:
         "Returns corresponding object :: "
         return self._lib['signaling']
 
     @property
-    def stun(self)->NCOcc:
+    def stun(self)->NcOccTalkStun:
         "Returns corresponding object :: "
         return self._lib['stun']
 
     @property
-    def turn(self)->NCOcc:
+    def turn(self)->NcOccTalkTurn:
         "Returns corresponding object :: "
         return self._lib['turn']
 
     @property
-    def user(self)->NCOcc:
+    def user(self)->NcOccTalkUser:
         "Returns corresponding object :: "
         return self._lib['user']
+

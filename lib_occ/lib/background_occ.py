@@ -9,8 +9,8 @@ class NcOccBackground(NCOcc):
             libs = {}
         super().__init__(libs)
         
-
-    def cron(self)-> str:
+    def cron(self):
         "backgroundajaxbackgroundwebcron Use cron ajax or webcron to run background jobs"
         cmd = self._lib['cron']['command']
-        return self._process([cmd])            
+        return self._process([cmd])
+                    

@@ -72,25 +72,25 @@ class NcOcc{clname}(NCOcc):
         {repl_init}
 """
 
-func_ref_normal ="""
-    def {funcname}(self)-> str:
+func_ref_normal ="""    def {funcname}(self):
         "{description}"
         cmd = self._lib['{libname}']['command']
-        return self._process([cmd])            
+        return self._process([cmd])
+                    
 """
 
-func_ref_param ="""
-    def {funcname}(self,value):
+func_ref_param ="""    def {funcname}(self,value) -> {returnobject}:
         "{description}"
         cmd = self._lib['{libname}']['command']
         return self._process([cmd,value])       
+
 """
 
-func_ref_objs ="""
-    @property
-    def {funcname}(self)->NCOcc:
+func_ref_objs ="""    @property
+    def {funcname}(self)->{returnobject}:
         "Returns corresponding object :: {description}"
         return self._lib['{libname}']
+
 """
 
 py_imports = """from lib_occ.creation import occ_command_lib as cmdlib
@@ -99,7 +99,7 @@ from dataclasses import dataclass
 """
 
 two_param = ['add','delete','edit','update','put','get','transfer-ownership']
-reserved_words = {'import':'imports'}
+reserved_words = {'import':'imports','list':'lists'}
 
 cls_names = ClsNameLib()
 
@@ -124,8 +124,8 @@ def generate_classes(skel:dict,classname:str,libname:str,path_to:str=None):
     head = head.format('{}',clname = classname,libname = libname,path_to=path_to,repl_init="{**}")
     main_class += head
     cls_names.add(classname, None)
-
     for k,v in skel.items():
+        returnobject = ""
         ref = func_ref_normal[:]
         if k == 'occ_lib_name':
             break
@@ -137,17 +137,19 @@ def generate_classes(skel:dict,classname:str,libname:str,path_to:str=None):
 
             subclasses.append(generate_classes(skel=v,classname=clsname,libname=ss.lower(),path_to=path_to))
             ref = func_ref_objs[:]
+            returnobject = "NcOcc"+clsname
             # print(k,v)
             # continue
         if k in two_param:
             ref = func_ref_param[:]
+            returnobject = "str"
 
         funcname = sanitize_func_name(k)
         # print(k,v)
         desc = ""
         if 'desc' in v.keys():
             desc = v['desc']
-        func = ref.format(funcname=funcname,libname=k,description=desc)
+        func = ref.format(funcname=funcname,libname=k,description=desc,returnobject=returnobject)
         main_class_funcs += func
 
     main_class += main_class_funcs
@@ -205,4 +207,4 @@ def compose_classes(write_files=True, write_ini=True,verbose=True,debug_txt=Fals
             update_init(f"{import_base}\n")
         cls_names.rm()
 
-compose_classes(True,True,False)
+compose_classes(True,False,False)
