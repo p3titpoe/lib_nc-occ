@@ -1,5 +1,5 @@
 from .lib import common_occ as common
-from lib import activity_occ as activity
+from .lib import activity_occ as activity
 from lib import admindelegation_occ as admindelegation
 from lib import app_occ as app
 from lib import appapi_occ as appapi
