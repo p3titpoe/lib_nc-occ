@@ -42,8 +42,8 @@ class NCOcc:
         proc:list = [f"{str(base)}/./process.sh"]
         proc.extend(args)
         result = subprocess.run(args=proc, capture_output=capture_output,text=True)
-        print(result)
-        return (result.stdout)
+        # print(result)
+        return (result)
         # return ff
 
 
