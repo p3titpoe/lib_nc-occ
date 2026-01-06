@@ -175,7 +175,7 @@ def compose_classes(write_files=True, write_ini=True,verbose=True,debug_txt=Fals
         cls_names.rm()
         fname = f"{section}{suffix}"
         filename = f"{base}/lib/{fname}.py"
-        import_base = f"from lib_occ.lib import {fname} as {section}"
+        import_base = f"from lib import {fname} as {section}"
 
         filetxt = ""
         filetxt += py_imports
@@ -207,4 +207,4 @@ def compose_classes(write_files=True, write_ini=True,verbose=True,debug_txt=Fals
             update_init(f"{import_base}\n")
         cls_names.rm()
 
-compose_classes(True,False,False)
+compose_classes(False,True,False)
