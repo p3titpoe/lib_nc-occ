@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lib_nc-occ"
+version = "0.0.1"
+authors = [
+  { name="Petrit Jung", email="dev@rimshot.lu" },
+]
+maintainers = [
+  {name = "Petrit Jung", email = "dev@example.com"}
+]
+keywords = ["Nextcloud","occ","api","library"]
+license = "MIT"
+license-files = ["LICEN[CS]E.*"]
+description = "Pure python Library to manipulate the Nextcloud management consele(occ) "
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+
+[project.urls]
+Homepage = "https://github.com/p3titpoe/lib_nc-occ"
+Issues = "https://github.com/p3titpoe/lib_nc-occ/issues"
