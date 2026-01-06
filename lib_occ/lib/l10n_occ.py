@@ -8,7 +8,9 @@ class NcOccL10n(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
+        
 
     def createjs(self)-> str:
+        "Create javascript translation files for a given app"
         cmd = self._lib['createjs']['command']
         return self._process([cmd])            

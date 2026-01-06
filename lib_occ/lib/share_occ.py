@@ -8,7 +8,9 @@ class NcOccShare(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
+        
 
     def list(self)-> str:
+        " List available shares"
         cmd = self._lib['list']['command']
         return self._process([cmd])            

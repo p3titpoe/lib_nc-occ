@@ -8,7 +8,9 @@ class NcOccUpdate(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
+        
 
     def check(self)-> str:
+        " Check for server and app updates"
         cmd = self._lib['check']['command']
         return self._process([cmd])            

@@ -8,19 +8,24 @@ class NcOccLog(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
+        
 
     def file(self)-> str:
+        " manipulate logging backend"
         cmd = self._lib['file']['command']
         return self._process([cmd])            
 
     def manage(self)-> str:
+        " manage logging configuration"
         cmd = self._lib['manage']['command']
         return self._process([cmd])            
 
     def tail(self)-> str:
+        " Tail the nextcloud logfile"
         cmd = self._lib['tail']['command']
         return self._process([cmd])            
 
     def watch(self)-> str:
+        "Watch the nextcloud logfile"
         cmd = self._lib['watch']['command']
         return self._process([cmd])            

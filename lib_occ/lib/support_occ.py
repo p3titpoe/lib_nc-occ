@@ -8,7 +8,9 @@ class NcOccSupport(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
+        
 
     def report(self)-> str:
+        " Generate a system report"
         cmd = self._lib['report']['command']
         return self._process([cmd])            

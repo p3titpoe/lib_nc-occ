@@ -8,7 +8,9 @@ class NcOccServerinfo(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
+        
 
     def update_storage_statistics(self)-> str:
+        " Triggers an update of the counts related to storages used in serverinfo"
         cmd = self._lib['update-storage-statistics']['command']
         return self._process([cmd])            

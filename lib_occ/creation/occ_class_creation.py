@@ -1,51 +1,66 @@
 import occ_command_lib as cmdlib
 from occ_transformer import base
 
+
+
+
+def sanitize_func_name(fname:str,chk_reserved=True)->str:
+    if "-" in fname:
+        fname = fname.replace("-", "_")
+    elif fname in reserved_words:
+        if chk_reserved:
+            fname = reserved_words[fname]
+
+    return fname
+
+
 class ClsNameLib:
     def __init__(self):
         self.names = []
+        self.paths = {}
         self.pfix = "NcOcc"
 
-    def add(self,val):
+    def add(self,val:str,path:list[str]):
         self.names.append(val)
+        # clsname = self.pfix+val
+        if val not in self.paths:
+            self.paths[val] = []
+        if path is not None:
+            self.paths[val].append(path)
 
-    def make_obj_to_init(self)->str:
+    def update(self,clsname:str,val:str):
+        self.paths[clsname].append(val)
+
+    def make_obj_to_init(self,classname:str)->str:
         """
-        Some words are separated by dash,
-        They have to be rebuid
-        :return:
+         makes the to_create dict  for class init
         """
         txt = """
         to_create = {
         """
-        pfix = "NcOcc"
-        spl = self.names[0]
-        wlist:list[str] = self.names[1:]
-        # kys = [f"{prf}{v}" for v in wlist]
-        for k in wlist:
+        class_objs = self.paths[classname]
+        if len(class_objs) == 0:
+            return ""
+
+        for k in class_objs:
             ind = 20
-            if k == wlist[0]:
+            if k == class_objs[0]:
                 ind = 12
-            # Recreate the dict key
-            # check for 2nd capital letter and inject a dash at that index
-            keyspl = k.split(spl)[1]
-            capitals = [keyspl.index(x) for x in keyspl if x.isupper()]
-            capitals = capitals[1:]
-            key = keyspl.lower()
-            if len(capitals) > 0:
-                key_seq =[x if i not in capitals else f"-{x}" for i,x in enumerate(key)]
-                key = "".join(key_seq)
-            # print(capitals)
-
-            txt += f"{'':>{ind}}'{key}' : {pfix}{k},\n"
-
+            # Create classnames
+            txt += f"{'':>{ind}}'{k}' : {self.pfix}{classname}{k.capitalize()},\n"
         txt +="""
             }
+        self._generate_subobjs(to_create)
         """
+        # print(txt)
         return txt
+
+    def make_prefixed_names(self)->list[str]:
+        return  [f"{self.pfix}{k}" for k in self.names]
 
     def rm(self):
         self.names = []
+        self.paths = {}
 
 header = """
 @dataclass(init=False)
@@ -54,6 +69,7 @@ class NcOcc{clname}(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
+        {repl_init}
 """
 
 func_ref_normal ="""
@@ -88,13 +104,6 @@ reserved_words = {'import':'imports'}
 cls_names = ClsNameLib()
 
 
-def sanitize_func_name(fname:str)->str:
-    if "-" in fname:
-        fname = fname.replace("-", "_")
-    elif fname in reserved_words:
-        fname = reserved_words[fname]
-
-    return fname
 
 def generate_classes(skel:dict,classname:str,libname:str,path_to:str=None):
     main_class=""
@@ -112,16 +121,21 @@ def generate_classes(skel:dict,classname:str,libname:str,path_to:str=None):
         path_to=libname
     ####Start creation ####
     head = header[:]
-    head = head.format('{}',clname = classname,libname = libname,path_to=path_to)
+    head = head.format('{}',clname = classname,libname = libname,path_to=path_to,repl_init="{**}")
     main_class += head
-    cls_names.add(classname)
+    cls_names.add(classname, None)
+
     for k,v in skel.items():
         ref = func_ref_normal[:]
         if k == 'occ_lib_name':
             break
         if len(v) > 3 or 'command' not in v.keys():
+            cls_names.update(classname, k)
+
             ss = str(k).capitalize()
-            subclasses.append(generate_classes(skel=v,classname=f"{classname}{ss}",libname=ss.lower(),path_to=path_to))
+            clsname = f"{classname}{ss}"
+
+            subclasses.append(generate_classes(skel=v,classname=clsname,libname=ss.lower(),path_to=path_to))
             ref = func_ref_objs[:]
             # print(k,v)
             # continue
@@ -129,21 +143,19 @@ def generate_classes(skel:dict,classname:str,libname:str,path_to:str=None):
             ref = func_ref_param[:]
 
         funcname = sanitize_func_name(k)
-        print(k,v)
+        # print(k,v)
         desc = ""
         if 'desc' in v.keys():
             desc = v['desc']
         func = ref.format(funcname=funcname,libname=k,description=desc)
         main_class_funcs += func
 
-
-    main_class += cls_names.make_obj_to_init()
     main_class += main_class_funcs
     subs = reversed(subclasses)
-    grand_out =""
+    grand_out =[]
     for s in subs:
-        grand_out += s
-    grand_out += main_class
+        grand_out.extend(s)
+    grand_out.append(main_class)
     return grand_out
 
 def update_init(classnames:str):
@@ -153,31 +165,39 @@ def update_init(classnames:str):
 
 def compose_classes(write_files=True, write_ini=True,verbose=True,debug_txt=False) :
     suffix='_occ'
-    # members = cmdlib.members_occ_lib
-    members =['files']
+    members = cmdlib.members_occ_lib
+    # members =['files']
     import_base = ""
 
     for section in members:
         cls_names.rm()
         fname = f"{section}{suffix}"
         filename = f"{base}/lib/{fname}.py"
-        import_base = f"from lib_occ.lib.{fname} import "
+        import_base = f"from lib_occ.lib import {fname} as {section}"
 
         filetxt = ""
         filetxt += py_imports
         skel = getattr(cmdlib,section)
-        filetxt += generate_classes(skel,section.capitalize(),section)
+        class_list:list[str] = generate_classes(skel,section.capitalize(),section)
+        if len(class_list) == len(cls_names.paths):
+            rev = [x for x in cls_names.paths.keys()]
+            rev.reverse()
+            for i,c in enumerate(rev):
+                repl = cls_names.make_obj_to_init(c)
+                class_list[i] = class_list[i].replace("{**}", repl)
+                filetxt += class_list[i]
+
         if debug_txt:
             print(filetxt)
         if write_files:
             with open(filename,"w") as fn:
                 fn.write(filetxt)
-        gen_classnames = reversed([f"NcOcc{x}" for x in cls_names.names])
+        gen_classnames = reversed(cls_names.make_prefixed_names())
         nn = ",".join(gen_classnames)
         # import_base = import_base+" "+",".join(gen_classnames)
-        import_base = import_base+" "+nn
+        # import_base = import_base+" "+nn
 
-        print(cls_names.make_obj_to_init())
+        # print(cls_names.make_obj_to_init())
         if verbose:
             print("Created classes",nn)
 
@@ -185,14 +205,4 @@ def compose_classes(write_files=True, write_ini=True,verbose=True,debug_txt=Fals
             update_init(f"{import_base}\n")
         cls_names.rm()
 
-
-# def function_tests(classnames:list[str],modulename:str):
-#
-#     for c in classnames:
-#         lbname = f"lib_occ.lib.{modulename}"
-#         cls = ","
-#         try:
-#             from lib_occ.lib import
-
-
-compose_classes(True,False)
+compose_classes(True,True,False)

@@ -8,20 +8,8 @@ class NcOccTalkUser(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
-
-        to_create = {
-                    'bot' : NcOccTalkBot,
-                    'monitor' : NcOccTalkMonitor,
-                    'phone-number' : NcOccTalkPhoneNumber,
-                    'recording' : NcOccTalkRecording,
-                    'room' : NcOccTalkRoom,
-                    'signaling' : NcOccTalkSignaling,
-                    'stun' : NcOccTalkStun,
-                    'turn' : NcOccTalkTurn,
-                    'user' : NcOccTalkUser,
-
-            }
         
+
     def remove(self)-> str:
         " Remove a user from all their rooms"
         cmd = self._lib['remove']['command']
@@ -38,19 +26,8 @@ class NcOccTalkTurn(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
-
-        to_create = {
-                    'bot' : NcOccTalkBot,
-                    'monitor' : NcOccTalkMonitor,
-                    'phone-number' : NcOccTalkPhoneNumber,
-                    'recording' : NcOccTalkRecording,
-                    'room' : NcOccTalkRoom,
-                    'signaling' : NcOccTalkSignaling,
-                    'stun' : NcOccTalkStun,
-                    'turn' : NcOccTalkTurn,
-
-            }
         
+
     def add(self,value):
         "Add a TURN server"
         cmd = self._lib['add']['command']
@@ -72,18 +49,8 @@ class NcOccTalkStun(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
-
-        to_create = {
-                    'bot' : NcOccTalkBot,
-                    'monitor' : NcOccTalkMonitor,
-                    'phone-number' : NcOccTalkPhoneNumber,
-                    'recording' : NcOccTalkRecording,
-                    'room' : NcOccTalkRoom,
-                    'signaling' : NcOccTalkSignaling,
-                    'stun' : NcOccTalkStun,
-
-            }
         
+
     def add(self,value):
         "Add a new STUN server"
         cmd = self._lib['add']['command']
@@ -105,17 +72,8 @@ class NcOccTalkSignaling(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
-
-        to_create = {
-                    'bot' : NcOccTalkBot,
-                    'monitor' : NcOccTalkMonitor,
-                    'phone-number' : NcOccTalkPhoneNumber,
-                    'recording' : NcOccTalkRecording,
-                    'room' : NcOccTalkRoom,
-                    'signaling' : NcOccTalkSignaling,
-
-            }
         
+
     def add(self,value):
         " Add an external signaling server"
         cmd = self._lib['add']['command']
@@ -142,16 +100,8 @@ class NcOccTalkRoom(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
-
-        to_create = {
-                    'bot' : NcOccTalkBot,
-                    'monitor' : NcOccTalkMonitor,
-                    'phone-number' : NcOccTalkPhoneNumber,
-                    'recording' : NcOccTalkRecording,
-                    'room' : NcOccTalkRoom,
-
-            }
         
+
     def add(self,value):
         "Adds users to a room"
         cmd = self._lib['add']['command']
@@ -193,15 +143,8 @@ class NcOccTalkRecording(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
-
-        to_create = {
-                    'bot' : NcOccTalkBot,
-                    'monitor' : NcOccTalkMonitor,
-                    'phone-number' : NcOccTalkPhoneNumber,
-                    'recording' : NcOccTalkRecording,
-
-            }
         
+
     def consent(self)-> str:
         " List all matching consent that were given to be audio and video recorded during a call requires administrator or moderator configuration"
         cmd = self._lib['consent']['command']
@@ -213,14 +156,8 @@ class NcOccTalkPhoneNumber(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
-
-        to_create = {
-                    'bot' : NcOccTalkBot,
-                    'monitor' : NcOccTalkMonitor,
-                    'phone-number' : NcOccTalkPhoneNumber,
-
-            }
         
+
     def add(self,value):
         "Add a mapping entry to map a phone number to an user"
         cmd = self._lib['add']['command']
@@ -252,13 +189,8 @@ class NcOccTalkMonitor(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
-
-        to_create = {
-                    'bot' : NcOccTalkBot,
-                    'monitor' : NcOccTalkMonitor,
-
-            }
         
+
     def calls(self)-> str:
         " Prints a list with conversations that have an active call as well as their participant count"
         cmd = self._lib['calls']['command']
@@ -275,12 +207,8 @@ class NcOccTalkBot(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
-
-        to_create = {
-                    'bot' : NcOccTalkBot,
-
-            }
         
+
     def create(self)-> str:
         "Creates a new bot on the server with response feature only"
         cmd = self._lib['create']['command']
@@ -322,11 +250,11 @@ class NcOccTalk(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
-
+        
         to_create = {
                     'bot' : NcOccTalkBot,
                     'monitor' : NcOccTalkMonitor,
-                    'phone-number' : NcOccTalkPhoneNumber,
+                    'phone-number' : NcOccTalkPhone-number,
                     'recording' : NcOccTalkRecording,
                     'room' : NcOccTalkRoom,
                     'signaling' : NcOccTalkSignaling,
@@ -335,8 +263,55 @@ class NcOccTalk(NCOcc):
                     'user' : NcOccTalkUser,
 
             }
+        self._generate_subobjs(to_create)
         
+
     def active_calls(self)-> str:
         "Allows you to check if calls are currently in process"
         cmd = self._lib['active-calls']['command']
         return self._process([cmd])            
+
+    @property
+    def bot(self)->NCOcc:
+        "Returns corresponding object :: "
+        return self._lib['bot']
+
+    @property
+    def monitor(self)->NCOcc:
+        "Returns corresponding object :: "
+        return self._lib['monitor']
+
+    @property
+    def phone_number(self)->NCOcc:
+        "Returns corresponding object :: "
+        return self._lib['phone-number']
+
+    @property
+    def recording(self)->NCOcc:
+        "Returns corresponding object :: "
+        return self._lib['recording']
+
+    @property
+    def room(self)->NCOcc:
+        "Returns corresponding object :: "
+        return self._lib['room']
+
+    @property
+    def signaling(self)->NCOcc:
+        "Returns corresponding object :: "
+        return self._lib['signaling']
+
+    @property
+    def stun(self)->NCOcc:
+        "Returns corresponding object :: "
+        return self._lib['stun']
+
+    @property
+    def turn(self)->NCOcc:
+        "Returns corresponding object :: "
+        return self._lib['turn']
+
+    @property
+    def user(self)->NCOcc:
+        "Returns corresponding object :: "
+        return self._lib['user']

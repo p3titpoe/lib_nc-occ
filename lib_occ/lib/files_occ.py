@@ -8,14 +8,8 @@ class NcOccFilesRecommendations(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
-
-        to_create = {
-                    'object' : NcOccFilesObject,
-                    'object-multi' : NcOccFilesObjectMulti,
-                    'recommendations' : NcOccFilesRecommendations,
-
-            }
         
+
     def recommend(self)-> str:
         "Shows recommended files for an account"
         cmd = self._lib['recommend']['command']
@@ -27,13 +21,8 @@ class NcOccFilesObjectMulti(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
-
-        to_create = {
-                    'object' : NcOccFilesObject,
-                    'object-multi' : NcOccFilesObjectMulti,
-
-            }
         
+
     def rename_config(self)-> str:
         " Rename an object store configuration and move all users over to the new configuration"
         cmd = self._lib['rename-config']['command']
@@ -50,13 +39,14 @@ class NcOccFilesObject(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
-
+        
         to_create = {
-                    'object' : NcOccFilesObject,
-                    'object-multi' : NcOccFilesObjectMulti,
+                    'multi' : NcOccFilesObjectMulti,
 
             }
+        self._generate_subobjs(to_create)
         
+
     def delete(self,value):
         "Delete an object from the object store"
         cmd = self._lib['delete']['command']
@@ -98,14 +88,15 @@ class NcOccFiles(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
-
+        
         to_create = {
                     'object' : NcOccFilesObject,
-                    'object-multi' : NcOccFilesObjectMulti,
                     'recommendations' : NcOccFilesRecommendations,
 
             }
+        self._generate_subobjs(to_create)
         
+
     def cleanup(self)-> str:
         "Clean up orphaned filecache and mount entries"
         cmd = self._lib['cleanup']['command']

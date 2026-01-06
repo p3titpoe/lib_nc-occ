@@ -8,8 +8,10 @@ class NcOccTablesLegacyTransfer(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
+        
 
     def rows(self)-> str:
+        "Transfer table legacy rows to new schema"
         cmd = self._lib['rows']['command']
         return self._process([cmd])            
 
@@ -19,12 +21,22 @@ class NcOccTablesLegacy(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
+        
+        to_create = {
+                    'transfer' : NcOccTablesLegacyTransfer,
+
+            }
+        self._generate_subobjs(to_create)
+        
 
     def clean(self)-> str:
+        "Clean the tables legacy data"
         cmd = self._lib['clean']['command']
         return self._process([cmd])            
 
+    @property
     def transfer(self)->NCOcc:
+        "Returns corresponding object :: "
         return self._lib['transfer']
 
 @dataclass(init=False)
@@ -33,12 +45,15 @@ class NcOccTablesContexts(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
+        
 
     def list(self)-> str:
+        " Get all contexts or contexts available to a specified user"
         cmd = self._lib['list']['command']
         return self._process([cmd])            
 
     def show(self)-> str:
+        " Get all contexts or contexts available to a specified user"
         cmd = self._lib['show']['command']
         return self._process([cmd])            
 
@@ -48,33 +63,51 @@ class NcOccTables(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
+        
+        to_create = {
+                    'contexts' : NcOccTablesContexts,
+                    'legacy' : NcOccTablesLegacy,
+
+            }
+        self._generate_subobjs(to_create)
+        
 
     def add(self,value):
+        " Add a table"
         cmd = self._lib['add']['command']
         return self._process([cmd,value])       
 
     def clean(self)-> str:
+        " Clean the tables data"
         cmd = self._lib['clean']['command']
         return self._process([cmd])            
 
+    @property
     def contexts(self)->NCOcc:
+        "Returns corresponding object :: "
         return self._lib['contexts']
 
+    @property
     def legacy(self)->NCOcc:
+        "Returns corresponding object :: "
         return self._lib['legacy']
 
     def list(self)-> str:
+        "List all tables"
         cmd = self._lib['list']['command']
         return self._process([cmd])            
 
     def owner(self)-> str:
+        " Set new owner for a table"
         cmd = self._lib['owner']['command']
         return self._process([cmd])            
 
     def remove(self)-> str:
+        "Remove a table"
         cmd = self._lib['remove']['command']
         return self._process([cmd])            
 
     def update(self,value):
+        "tablesrename Rename a table"
         cmd = self._lib['update']['command']
         return self._process([cmd,value])       

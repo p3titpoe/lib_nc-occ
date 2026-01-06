@@ -1,48 +1,48 @@
-from lib_occ.lib.common_occ import  NcOccCommon
-from lib_occ.lib.activity_occ import  NcOccActivity
-from lib_occ.lib.admindelegation_occ import  NcOccAdmindelegation
-from lib_occ.lib.app_occ import  NcOccApp
-from lib_occ.lib.appapi_occ import  NcOccAppapiDaemonRegistry,NcOccAppapiDaemon,NcOccAppapiAppConfig,NcOccAppapiApp,NcOccAppapi
-from lib_occ.lib.background_occ import  NcOccBackground
-from lib_occ.lib.backgroundjob_occ import  NcOccBackgroundjob
-from lib_occ.lib.bookmarks_occ import  NcOccBookmarks
-from lib_occ.lib.broadcast_occ import  NcOccBroadcast
-from lib_occ.lib.calendar_occ import  NcOccCalendar
-from lib_occ.lib.circles_occ import  NcOccCirclesShares,NcOccCirclesMigrate,NcOccCirclesMembers,NcOccCirclesManage,NcOccCircles
-from lib_occ.lib.config_occ import  NcOccConfigSystem,NcOccConfigApp,NcOccConfig
-from lib_occ.lib.dav_occ import  NcOccDavRetention,NcOccDavAbsence,NcOccDav
-from lib_occ.lib.db_occ import  NcOccDbSchema,NcOccDb
-from lib_occ.lib.encryption_occ import  NcOccEncryption
-from lib_occ.lib.federation_occ import  NcOccFederation
-from lib_occ.lib.files_occ import  NcOccFilesRecommendations,NcOccFilesObjectMulti,NcOccFilesObject,NcOccFiles
-from lib_occ.lib.group_occ import  NcOccGroup
-from lib_occ.lib.info_occ import  NcOccInfoFile,NcOccInfo
-from lib_occ.lib.integrity_occ import  NcOccIntegrity
-from lib_occ.lib.l10n_occ import  NcOccL10n
-from lib_occ.lib.log_occ import  NcOccLog
-from lib_occ.lib.maintenance_occ import  NcOccMaintenanceUpdate,NcOccMaintenanceTheme,NcOccMaintenanceMimetype,NcOccMaintenance
-from lib_occ.lib.memcache_occ import  NcOccMemcacheDistributed,NcOccMemcache
-from lib_occ.lib.metadata_occ import  NcOccMetadata
-from lib_occ.lib.migrations_occ import  NcOccMigrations
-from lib_occ.lib.notification_occ import  NcOccNotification
-from lib_occ.lib.photos_occ import  NcOccPhotosAlbums,NcOccPhotos
-from lib_occ.lib.preview_occ import  NcOccPreview
-from lib_occ.lib.router_occ import  NcOccRouter
-from lib_occ.lib.security_occ import  NcOccSecurityCertificates,NcOccSecurityBruteforce,NcOccSecurity
-from lib_occ.lib.serverinfo_occ import  NcOccServerinfo
-from lib_occ.lib.share_occ import  NcOccShare
-from lib_occ.lib.sharing_occ import  NcOccSharing
-from lib_occ.lib.support_occ import  NcOccSupport
-from lib_occ.lib.tables_occ import  NcOccTablesLegacyTransfer,NcOccTablesLegacy,NcOccTablesContexts,NcOccTables
-from lib_occ.lib.tag_occ import  NcOccTagFiles,NcOccTag
-from lib_occ.lib.talk_occ import  NcOccTalkUser,NcOccTalkTurn,NcOccTalkStun,NcOccTalkSignaling,NcOccTalkRoom,NcOccTalkRecording,NcOccTalkPhoneNumber,NcOccTalkMonitor,NcOccTalkBot,NcOccTalk
-from lib_occ.lib.taskprocessing_occ import  NcOccTaskprocessingTask,NcOccTaskprocessingTaskType,NcOccTaskprocessing
-from lib_occ.lib.text_occ import  NcOccText
-from lib_occ.lib.theming_occ import  NcOccTheming
-from lib_occ.lib.trashbin_occ import  NcOccTrashbin
-from lib_occ.lib.twofactorauth_occ import  NcOccTwofactorauth
-from lib_occ.lib.update_occ import  NcOccUpdate
-from lib_occ.lib.user_occ import  NcOccUserKeys,NcOccUserAuthTokens,NcOccUser
-from lib_occ.lib.versions_occ import  NcOccVersions
-from lib_occ.lib.webhooklisteners_occ import  NcOccWebhooklisteners
-from lib_occ.lib.workflows_occ import  NcOccWorkflows
+from lib_occ.lib import common_occ as common
+from lib_occ.lib import activity_occ as activity
+from lib_occ.lib import admindelegation_occ as admindelegation
+from lib_occ.lib import app_occ as app
+from lib_occ.lib import appapi_occ as appapi
+from lib_occ.lib import background_occ as background
+from lib_occ.lib import backgroundjob_occ as backgroundjob
+from lib_occ.lib import bookmarks_occ as bookmarks
+from lib_occ.lib import broadcast_occ as broadcast
+from lib_occ.lib import calendar_occ as calendar
+from lib_occ.lib import circles_occ as circles
+from lib_occ.lib import config_occ as config
+from lib_occ.lib import dav_occ as dav
+from lib_occ.lib import db_occ as db
+from lib_occ.lib import encryption_occ as encryption
+from lib_occ.lib import federation_occ as federation
+from lib_occ.lib import files_occ as files
+from lib_occ.lib import group_occ as group
+from lib_occ.lib import info_occ as info
+from lib_occ.lib import integrity_occ as integrity
+from lib_occ.lib import l10n_occ as l10n
+from lib_occ.lib import log_occ as log
+from lib_occ.lib import maintenance_occ as maintenance
+from lib_occ.lib import memcache_occ as memcache
+from lib_occ.lib import metadata_occ as metadata
+from lib_occ.lib import migrations_occ as migrations
+from lib_occ.lib import notification_occ as notification
+from lib_occ.lib import photos_occ as photos
+from lib_occ.lib import preview_occ as preview
+from lib_occ.lib import router_occ as router
+from lib_occ.lib import security_occ as security
+from lib_occ.lib import serverinfo_occ as serverinfo
+from lib_occ.lib import share_occ as share
+from lib_occ.lib import sharing_occ as sharing
+from lib_occ.lib import support_occ as support
+from lib_occ.lib import tables_occ as tables
+from lib_occ.lib import tag_occ as tag
+from lib_occ.lib import talk_occ as talk
+from lib_occ.lib import taskprocessing_occ as taskprocessing
+from lib_occ.lib import text_occ as text
+from lib_occ.lib import theming_occ as theming
+from lib_occ.lib import trashbin_occ as trashbin
+from lib_occ.lib import twofactorauth_occ as twofactorauth
+from lib_occ.lib import update_occ as update
+from lib_occ.lib import user_occ as user
+from lib_occ.lib import versions_occ as versions
+from lib_occ.lib import webhooklisteners_occ as webhooklisteners
+from lib_occ.lib import workflows_occ as workflows

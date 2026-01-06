@@ -8,16 +8,20 @@ class NcOccConfigSystem(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
+        
 
     def delete(self,value):
+        " Delete a system config value"
         cmd = self._lib['delete']['command']
         return self._process([cmd,value])       
 
     def get(self,value):
+        "Get a system config value"
         cmd = self._lib['get']['command']
         return self._process([cmd,value])       
 
     def set(self)-> str:
+        "Set a system config value"
         cmd = self._lib['set']['command']
         return self._process([cmd])            
 
@@ -27,16 +31,20 @@ class NcOccConfigApp(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
+        
 
     def delete(self,value):
+        "Delete an app config value"
         cmd = self._lib['delete']['command']
         return self._process([cmd,value])       
 
     def get(self,value):
+        " Get an app config value"
         cmd = self._lib['get']['command']
         return self._process([cmd,value])       
 
     def set(self)-> str:
+        " Set an app config value"
         cmd = self._lib['set']['command']
         return self._process([cmd])            
 
@@ -46,21 +54,36 @@ class NcOccConfig(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
+        
+        to_create = {
+                    'app' : NcOccConfigApp,
+                    'system' : NcOccConfigSystem,
 
+            }
+        self._generate_subobjs(to_create)
+        
+
+    @property
     def app(self)->NCOcc:
+        "Returns corresponding object :: "
         return self._lib['app']
 
-    def import_config(self)-> str:
+    def imports(self)-> str:
+        "Import a list of configs"
         cmd = self._lib['import']['command']
         return self._process([cmd])            
 
     def list(self)-> str:
+        "List all configs"
         cmd = self._lib['list']['command']
         return self._process([cmd])            
 
     def preset(self)-> str:
+        "Select a config preset"
         cmd = self._lib['preset']['command']
         return self._process([cmd])            
 
+    @property
     def system(self)->NCOcc:
+        "Returns corresponding object :: "
         return self._lib['system']

@@ -8,7 +8,9 @@ class NcOccWebhooklisteners(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
+        
 
     def list(self)-> str:
+        " Lists configured webhook listeners"
         cmd = self._lib['list']['command']
         return self._process([cmd])            

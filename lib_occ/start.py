@@ -1,4 +1,4 @@
 from lib_occ.lib import NcOccTag
-
-nct = NcOccTag()
-print(nct.files().name)
+from lib_occ.lib import NcOccFiles
+nct = NcOccFiles()
+print(nct.recommendations.recommend())

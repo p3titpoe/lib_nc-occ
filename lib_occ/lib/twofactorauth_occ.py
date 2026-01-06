@@ -8,23 +8,29 @@ class NcOccTwofactorauth(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
+        
 
     def cleanup(self)-> str:
+        "Clean up the twofactor userprovider association of an uninstalledremoved provider"
         cmd = self._lib['cleanup']['command']
         return self._process([cmd])            
 
     def disable(self)-> str:
+        "Disable twofactor authentication for a user"
         cmd = self._lib['disable']['command']
         return self._process([cmd])            
 
     def enable(self)-> str:
+        " Enable twofactor authentication for a user"
         cmd = self._lib['enable']['command']
         return self._process([cmd])            
 
     def enforce(self)-> str:
+        "Enableddisable enforced twofactor authentication"
         cmd = self._lib['enforce']['command']
         return self._process([cmd])            
 
     def state(self)-> str:
+        "Get the twofactor authentication 2FA state of a user"
         cmd = self._lib['state']['command']
         return self._process([cmd])            

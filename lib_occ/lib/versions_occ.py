@@ -8,11 +8,14 @@ class NcOccVersions(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
+        
 
     def cleanup(self)-> str:
+        " Delete versions"
         cmd = self._lib['cleanup']['command']
         return self._process([cmd])            
 
     def expire(self)-> str:
+        "Expires the users file versions"
         cmd = self._lib['expire']['command']
         return self._process([cmd])            

@@ -8,15 +8,19 @@ class NcOccAdmindelegation(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
+        
 
     def add(self,value):
+        " add setting delegation to a group"
         cmd = self._lib['add']['command']
         return self._process([cmd,value])       
 
     def remove(self)-> str:
+        "remove settings delegation from a group"
         cmd = self._lib['remove']['command']
         return self._process([cmd])            
 
     def show(self)-> str:
+        "show delegated settings"
         cmd = self._lib['show']['command']
         return self._process([cmd])            

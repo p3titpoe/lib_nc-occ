@@ -8,7 +8,9 @@ class NcOccText(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
+        
 
     def reset(self)-> str:
+        " Reset a text document session to the current file content"
         cmd = self._lib['reset']['command']
         return self._process([cmd])            

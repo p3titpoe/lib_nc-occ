@@ -8,7 +8,9 @@ class NcOccActivity(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
+        
 
     def send_mails(self)-> str:
+        "Sends the activity notification mails"
         cmd = self._lib['send-mails']['command']
         return self._process([cmd])            

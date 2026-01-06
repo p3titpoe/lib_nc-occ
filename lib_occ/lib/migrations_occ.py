@@ -8,7 +8,9 @@ class NcOccMigrations(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
+        
 
     def preview(self)-> str:
+        " Get preview of available DB migrations in case of initiating an upgrade"
         cmd = self._lib['preview']['command']
         return self._process([cmd])            

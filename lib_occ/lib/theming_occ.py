@@ -8,7 +8,9 @@ class NcOccTheming(NCOcc):
         if libs is None:
             libs = {}
         super().__init__(libs)
+        
 
     def config(self)-> str:
+        " Set theming app config values"
         cmd = self._lib['config']['command']
         return self._process([cmd])            
