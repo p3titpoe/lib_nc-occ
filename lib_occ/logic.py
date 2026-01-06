@@ -40,7 +40,8 @@ class NCOcc:
         args.append(self._output)
         arg.extend(args)
         # print(arg)
-        result = subprocess.run(args=arg, capture_output=capture_output,text=txt)
+        result = subprocess.run(args=arg, capture_output=capture_output,text=True)
+        print(result)
         return (result.stdout)
         # return ff
 
