@@ -44,12 +44,43 @@ python3 pip install path/to/dwn/lib_nc_occ
 ```
 
 ### Usage
+
+- Complete import
 ```
 from lib_occ import nc_occ
 
-file_api = nc_occ.Files()
+files_api = nc_occ.Files()
+files_api.scan()
+
+# Bigger parts of a section are objects
+# These are properties
+
+files.object.info()  #object
+
+ff.object.multi.rename_config()  #object & multi
+
 
 ```
+- Section & classes import
 
+>[!NOTE]
+> Names for classes are composed with this schema:
+> {prefix}{BaseClass}{Child1}{Child2}  ..etc 
+> The full path for the object appapi:app:daemon:registry:
+> NcOccAppapiDaemonRegistry
+> 
 
-**lib_nc-occ**
+```
+from lib_occ.nc_occ import Tag, Config
+from lib_occ.appapi import NcOcc
+
+tags = Tag()
+config = Config()
+
+# Watches for reserved words. Adds "s" at the end 
+tags.lists() 
+config.imports()
+
+api_daemons = Appapi.daemons
+api_daemons.lists()
+
