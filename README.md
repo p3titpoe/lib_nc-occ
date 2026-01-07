@@ -64,10 +64,10 @@ ff.object.multi.rename_config()  #object & multi
 - Section & classes import
 
 >[!NOTE]
-> Names for classes are composed with this schema:
-> {prefix}{BaseClass}{Child1}{Child2}  ..etc 
-> The full path for the object appapi:app:daemon:registry:
-> NcOccAppapiDaemonRegistry
+> Names for classes are composed with this schema:\n
+> {prefix}{BaseClass}{Child1}{Child2}  ..etc \n
+> The full path for the object appapi:app:daemon:registry: \n
+> NcOccAppapiDaemonRegistry \n
 > 
 
 ```
