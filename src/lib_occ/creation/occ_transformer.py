@@ -1,7 +1,5 @@
-from pprint import pp
-from dataclasses import dataclass,field
 from pathlib import  Path
-from lib_occ.logic import base,root
+from ..logic import  base,root
 
 
 occ_file = f"{base}/creation/occ_list.txt"

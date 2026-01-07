@@ -1,26 +1,38 @@
 import subprocess
-from pprint import pp
 from pathlib import Path
 from dataclasses import dataclass,field
 from json import loads
+
 base = Path(__file__).parent
 root = base.parent
 
 
 @dataclass(init=False)
 class OccResponse:
+    """
+    Handles subprocess.CompletedProcess as to have
+    an unified response.
+    json.loads the data if successful.
+    rtype holds the type of the response
+    """
     response:str = ""
+    response_str:str = ""
     cmd:str = ""
     rtype:str = ""
 
     def __init__(self,resp:subprocess.CompletedProcess):
         rsp = resp.stderr if resp.stdout == "" else resp.stdout
         self.response = loads(rsp)
+        self.response_str = rsp
         self.cmd = resp.args[1]
         self.rtype = type(self.response)
 
 @dataclass
 class NCOcc:
+    """
+    Base class of every class in the library.
+
+    """
     _lib:dict[str:str]
     name:str = None
     _output = "--output=json"
@@ -39,6 +51,12 @@ class NCOcc:
             self._lib[k] = obj
 
     def update_lib(self,what:str|dict,value:str=None)->bool:
+        """
+        Updates elements in the lib
+        :param what:
+        :param value:
+        :return:
+        """
         out = False
         if isinstance(what,dict):
             self._lib = {}
@@ -62,6 +80,11 @@ class NCOcc:
 
     @property
     def section_func_list(self, inlist:dict = None):
+        """
+        Prints all function to the screen
+        :param inlist:
+        :return:
+        """
         wdict:dict = self._lib
         if inlist is not  None:
             wdict = inlist

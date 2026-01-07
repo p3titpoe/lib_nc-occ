@@ -1,20 +1,28 @@
 import occ_command_lib as cmdlib
 from occ_transformer import base
 
-
-
-
 def sanitize_func_name(fname:str,chk_reserved=True)->str:
+    """
+    Used to sanitize names and replace confliciting verbs,
+    eg. import becomes imports
+
+    :param fname:
+    :param chk_reserved:
+    :return:
+    """
     if "-" in fname:
         fname = fname.replace("-", "_")
     elif fname in reserved_words:
         if chk_reserved:
             fname = reserved_words[fname]
-
     return fname
 
 
 class ClsNameLib:
+    """
+    Container class that handles communication between functions,
+    eg. keeps track of created classnames for a given sections
+    """
     def __init__(self):
         self.names = []
         self.paths = {}
@@ -52,7 +60,6 @@ class ClsNameLib:
             }
         self._generate_subobjs(to_create)
         """
-        # print(txt)
         return txt
 
     def make_prefixed_names(self)->list[str]:
@@ -103,9 +110,16 @@ reserved_words = {'import':'imports','list':'lists'}
 
 cls_names = ClsNameLib()
 
-
-
 def generate_classes(skel:dict,classname:str,libname:str,path_to:str=None):
+    """
+    Gets a dict from occ_command lib as skel and creates corresponding classes.
+
+    :param skel:
+    :param classname:
+    :param libname:
+    :param path_to:
+    :return:
+    """
     main_class=""
     main_class_funcs = ""
     subclasses = []
@@ -129,23 +143,20 @@ def generate_classes(skel:dict,classname:str,libname:str,path_to:str=None):
         ref = func_ref_normal[:]
         if k == 'occ_lib_name':
             break
+
         if len(v) > 3 or 'command' not in v.keys():
             cls_names.update(classname, k)
-
             ss = str(k).capitalize()
             clsname = f"{classname}{ss}"
-
             subclasses.append(generate_classes(skel=v,classname=clsname,libname=ss.lower(),path_to=path_to))
             ref = func_ref_objs[:]
             returnobject = "NcOcc"+clsname
-            # print(k,v)
-            # continue
+
         if k in two_param:
             ref = func_ref_param[:]
             returnobject = "str"
 
         funcname = sanitize_func_name(k)
-        # print(k,v)
         desc = ""
         if 'desc' in v.keys():
             desc = v['desc']
@@ -161,21 +172,28 @@ def generate_classes(skel:dict,classname:str,libname:str,path_to:str=None):
     return grand_out
 
 def update_init(classnames:str):
+    """
+    Updates __ini__t.py
+    :param classnames:
+    :return:
+    """
     initf = f"{base}/lib/__init__.py"
     with open(initf,"a+") as ini:
         ini.write(classnames)
 
 def compose_classes(write_files=True, write_ini=True,verbose=True,debug_txt=False) :
+    """
+        Orchestrates the file creation.
+
+    """
     suffix='_occ'
     members = cmdlib.members_occ_lib
-    # members =['files']
     import_base = ""
 
     for section in members:
         cls_names.rm()
         fname = f"{section}{suffix}"
         filename = f"{base}/lib/{fname}.py"
-        # import_base = f"from lib import {fname} as {section}"
 
         filetxt = ""
         filetxt += py_imports
@@ -196,20 +214,12 @@ def compose_classes(write_files=True, write_ini=True,verbose=True,debug_txt=Fals
                 fn.write(filetxt)
         rev = reversed(cls_names.make_prefixed_names())
         gen_classnames = [s for s in rev]
-        # print(gen_classnames)
         nn = ",".join(gen_classnames)
         import_base = f"from .lib.{fname} import {gen_classnames[-1]} as {section.capitalize()}"
 
-
-        # import_base = import_base+" "+",".join(gen_classnames)
-        # import_base = import_base+" "+nn
-
-        # print(cls_names.make_obj_to_init())
         if verbose:
             print("Created classes",nn)
 
         if write_ini:
             update_init(f"{import_base}\n")
         cls_names.rm()
-
-compose_classes(False,True,False)
