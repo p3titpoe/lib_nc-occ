@@ -70,7 +70,7 @@ ff.object.multi.rename_config()  #object & multi
 >
 > The full name for the class "appapi:daemon:registry:"
 >
-> NcOccAppapiDaemonRegistry
+> _NcOccAppapiDaemonRegistry_
 > 
 
 ```
@@ -103,6 +103,14 @@ And rightly so, because
 Running a maintenance script as root which includes lib_occ will not fail, but any other user will.
 
 #### Other users
+
+>[!Caution]
+>Be careful about the next steps, as you will be adding a user to the sudoers and edit the rights with visudo
+>
+
+```bash
+usermod -aG sudo username
+```
 
 
 
