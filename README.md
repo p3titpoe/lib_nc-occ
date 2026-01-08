@@ -104,7 +104,7 @@ and then executes
 sudo -u www-data php /var/www/nextcloud/occ
 ```
 
-If your server has another path, you can either set it in your python project like this.
+If your server has another path, you can either in your python project like this.
 
 ```python
 from lib_occ.nc_occ
@@ -115,7 +115,7 @@ nc_occ.set_occ_dir(/pth/to/your/NxtCloud)
 #### root / www-data
 If your script / application runs on a webserver or directly in Nextcloud, you're good to go as they run under **www-data**
 
-##### sudo
+#### sudo
 
 In its initial state after installation, only root has sudo rights.
 And rightly so, because
@@ -139,9 +139,9 @@ With NOPASSWD
 visudo
 ```
 Look for the line
-> # User privilege specification
+>User privilege specification
 
-and insert
+and add
 ```bash
 OtherUser   ALL=(www-data:www-data) NOPASSWD: /usr/bin/php
 ```
