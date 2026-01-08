@@ -46,7 +46,7 @@ python3 pip install path/to/dwn/lib_nc_occ
 ### _Usage_
 
 - Complete import
-```
+```python
 from lib_occ import nc_occ
 
 files_api = nc_occ.Files()
@@ -73,7 +73,7 @@ ff.object.multi.rename_config()  #object & multi
 > _NcOccAppapiDaemonRegistry_
 > 
 
-```
+```python
 from lib_occ.nc_occ import Tag, Config
 from lib_occ.appapi import NcOccAppiDaemon
 
