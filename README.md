@@ -115,7 +115,8 @@ nc_occ.set_occ_dir(/pth/to/your/NxtCloud)
 #### root / www-data
 If your script / application runs on a webserver or directly in Nextcloud, you're good to go as they run under **www-data**
 
-**sud0**
+##### sudo
+
 In its initial state after installation, only root has sudo rights.
 And rightly so, because
 
