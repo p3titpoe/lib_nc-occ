@@ -66,9 +66,9 @@ ff.object.multi.rename_config()  #object & multi
 >[!NOTE]
 > Names for classes are composed with this schema:
 >
-> {prefix}{BaseClass}{Child1}{Child2}
+> {prefix}{BaseClass}{Child1}{ChildN}
 >
-> The full path for the object "appapi:app:daemon:registry:"
+> The full name for the class "appapi:daemon:registry:"
 >
 > NcOccAppapiDaemonRegistry
 > 
