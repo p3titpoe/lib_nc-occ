@@ -1,7 +1,7 @@
 # lib_nc-occ 
 ### Abstraction layer for NextCloud Management Console (occ) 
 
-Pure python based library for OCC.
+Python based library for the [occ management](https://docs.nextcloud.com/server/stable/admin_manual/occ_command.html) console on [NextCloud Servers](https://github.com/nextcloud).
 
 ### Features:
 - Almost complete Nextcloud management console api mirrored into handy python classes.
