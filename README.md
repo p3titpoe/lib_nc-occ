@@ -90,11 +90,32 @@ api_daemons.lists()
 
 ### _Communicating with occ_
 
-Communication with occ happens through sudo, as you have to impersonate(sudo) **www-data**.
+Communication with [occ happens through sudo](https://docs.nextcloud.com/server/stable/admin_manual/occ_command.html#occ-command-directory), as you have to impersonate(sudo) **www-data**.
+lib_occ executes a subprocess.run with the corresponding path.
+In its default state, lib_occ looks for _occ_ in
+
+```bash
+/var/www/nextcloud/
+```
+
+and then executes
+
+```bash
+sudo -u www-data php /var/www/nextcloud/occ
+```
+
+If your server has another path, you can either set it in your python project like this.
+
+```python
+from lib_occ.nc_occ
+nc_occ.set_occ_dir(/pth/to/your/NxtCloud)
+```
+
+
+#### root / www-data
 If your script / application runs on a webserver or directly in Nextcloud, you're good to go as they run under **www-data**
 
-#### root
-
+**sud0**
 In its initial state after installation, only root has sudo rights.
 And rightly so, because
 
@@ -108,9 +129,22 @@ Running a maintenance script as root which includes lib_occ will not fail, but a
 >Be careful about the next steps, as you will be adding a user to the sudoers and edit the rights with visudo
 >
 
+There are [different ways](https://linuxconfig.org/sudo-install-usage-and-sudoers-config-file-basics) to give a user sudo rights.
+We'll stick with the most "_secure_" way and only grant our _OtherUser_ the privilege to execute php as www-data
+With NOPASSWD 
+
+(Needs root privileges)
 ```bash
-usermod -aG sudo username
+visudo
 ```
+Look for the line
+> # User privilege specification
+
+and insert
+```bash
+OtherUser   ALL=(www-data:www-data) NOPASSWD: /usr/bin/php
+```
+
 
 
 
