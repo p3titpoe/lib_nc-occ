@@ -36,7 +36,7 @@ python3 pip install path/to/dwn/load
 - cd into it & run
 
 ```
-python3 -m build
+make build
 ```
 - then
 ```
@@ -88,6 +88,5 @@ api_daemons = Appapi.daemon
 api_daemons.lists()
 ```
 
-## /var/www/nextcloud/occ
 
 
