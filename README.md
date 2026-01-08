@@ -5,7 +5,7 @@ Python based library for the [occ management](https://docs.nextcloud.com/server/
 
 ### Features:
 - Almost complete Nextcloud management console api mirrored into handy python classes.
-- Handles communication with occ
+- Handles [communication](#communicating-with-occ) with occ
 - Powerful tool in combination with nc_py_api for your ExApp apps.
 
 ### How it's done
@@ -28,8 +28,8 @@ Every generated class inherits from a base class that does the greatest
 python3 pip install path/to/dwn/load
 ```
 
-**- Pip**
-- In progress
+**- Pip repo**
+- in the workings
 
 **- Build**
 - Clone this repository
@@ -87,6 +87,23 @@ config.imports()
 api_daemons = Appapi.daemon
 api_daemons.lists()
 ```
+
+### Communicating with occ
+
+Communication with occ happens through sudo, as you have to impersonate(sudo) **www-data**.
+If your script / application runs on a webserver or directly in Nextcloud, you're good to go as they run under **www-data**
+
+#### root
+
+In its initial state after installation, only root has sudo rights.
+And rightly so, because
+
+>With great powers comes gereat responsibility 
+
+Running a maintenance script as root which includes lib_occ will not fail, but any other user will.
+
+#### Other users
+
 
 
 
