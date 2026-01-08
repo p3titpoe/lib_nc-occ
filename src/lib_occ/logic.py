@@ -3,8 +3,37 @@ from pathlib import Path
 from dataclasses import dataclass,field
 from json import loads
 
+
 base = Path(__file__).parent
 root = base.parent
+
+class OccCaller:
+    _user:str = ""
+
+    def __repr__(self):
+        out = f"User : {self._user}"
+        return out
+
+    @property
+    def user(self)->str:
+        return self._user
+
+    def set_user(self,user:str):
+        self._user = user
+
+    def make_call(self)->list:
+        www:list = ['php','/var/www/nextcloud/occ']
+        out:list = ['sudo','-u ','www-data php','/var/www/nextcloud/occ']
+        if self._user == "www-data":
+            out = www
+        return out
+
+    def display(self):
+        print(self._user)
+        return self._user
+
+UserReg:OccCaller = OccCaller()
+
 
 
 @dataclass(init=False)
@@ -39,7 +68,6 @@ class NCOcc:
 
     def __post_init__(self):
         self.name = self.__class__.__name__.replace("NcOcc","")
-        print(self.name)
 
     def _set_lib(self,name:str,value:str):
         if name not in self._lib and isinstance(value,str):
@@ -69,12 +97,12 @@ class NCOcc:
         return out
 
     def _process(self,args:str|list,capture_output:bool=True,txt:bool=True)->OccResponse:
-        arg = ['sudo','-u ','www-data php','/var/www/nextcloud/occ']
+        arg = UserReg.make_call()
         args.append(self._output)
         arg.extend(args)
-        proc:list = [f"{str(base)}/./process.sh"]
-        proc.extend(args)
-        result = subprocess.run(args=proc, capture_output=capture_output,text=True)
+        # proc:list = [f"{str(base)}/./process.sh"]
+        # proc.extend(args)
+        result = subprocess.run(args=args, capture_output=capture_output,text=True)
         res = OccResponse(result)
         return (res)
 

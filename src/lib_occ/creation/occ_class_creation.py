@@ -1,5 +1,5 @@
-import occ_command_lib as cmdlib
-from occ_transformer import base
+from . import occ_command_lib as cmdlib
+from .occ_transformer import base
 
 def sanitize_func_name(fname:str,chk_reserved=True)->str:
     """
