@@ -75,7 +75,7 @@ ff.object.multi.rename_config()  #object & multi
 
 ```
 from lib_occ.nc_occ import Tag, Config
-from lib_occ.appapi import NcOcc
+from lib_occ.appapi import NcOccAppiDaemon
 
 tags = Tag()
 config = Config()
@@ -84,6 +84,10 @@ config = Config()
 tags.lists() 
 config.imports()
 
-api_daemons = Appapi.daemons
+api_daemons = Appapi.daemon
 api_daemons.lists()
+```
+
+## /var/www/nextcloud/occ
+
 
