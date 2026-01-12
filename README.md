@@ -121,7 +121,7 @@ If your script / application runs on a webserver or directly in Nextcloud, you'r
 In its initial state after installation, only root has sudo rights.
 And rightly so, because
 
->With great powers comes gereat responsibility 
+>With great powers comes gereat responsibility --Uncle Ben
 
 Running a maintenance script as root which includes lib_occ will not fail, but any other user will.
 
